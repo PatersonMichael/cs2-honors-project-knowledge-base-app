@@ -1,4 +1,6 @@
 # Database Documentation
+The purpose of this database is to be a store of information in the form of notes and index cards collected by users doing research in any variety of field.
+
 
 
 ## Tables and Table Structures
