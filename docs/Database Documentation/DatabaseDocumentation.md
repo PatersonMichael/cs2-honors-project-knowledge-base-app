@@ -6,6 +6,6 @@ The purpose of this database is to be a store of information in the form of note
 
 ## Tables and Table Structures
 
-### Database Schema
+### Database Entity Relationship Diagram
 
 ![Database Schema drawio](https://github.com/PatersonMichael/cs2-honors-project-knowledge-base-app/assets/33883467/2525acca-2834-459c-b5a3-fd19c49fde0b)
