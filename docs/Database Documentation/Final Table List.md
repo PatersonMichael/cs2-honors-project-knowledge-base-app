@@ -1,0 +1,11 @@
+# Final Table List
+
+|                Table | Description                                                                                                                                                                                                                  |
+| -------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|         **Keywords** | Words that identify topics. Used to identify relationships between different elements in the application when a user searches, organizes, or views them. <br />Type: Data<br>                                                |
+|            **Notes** | Freeform bodies of text that users can create to take notes. Used to store and identify each individual note. <br />Type: Data<br>                                                                                           |
+|            **Users** | People who use the application. Stores information used to maintain user identity, establish communication and identify authorship of elements created in the app. <br />Type: Data<br>                                      |
+|          **Authors** | People who wrote or created Source Materials. Used to identify and relate common materials that they created or collaborated on. This could be searched by the user to identify the Author’s creations. <br />Type: Data<br> |
+|      **Index Cards** | An excerpt taken from source material, along with notes reflecting on the excerpt. This is used to store information taken from a source material for future reference by the users. <br />Type: Data<br>                    |
+| **Source Materials** | The materials that excerpts are taken from. Used to identify works and artifacts for reference throughout the app. <br />Type: Data<br>                                                                                      |
+|        **Citations** | Citations created by users to identify authorship and source material in a particular format, often to be included as part of a “works cited” page or bibliography. <br />Type: Data<br>                                     |
