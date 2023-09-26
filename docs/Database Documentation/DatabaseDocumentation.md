@@ -8,10 +8,11 @@ The purpose of this database is to be a store of information in the form of note
 
 ### Database Entity Relationship Diagram
 
-![Database Schema drawio](https://github.com/PatersonMichael/cs2-honors-project-knowledge-base-app/assets/33883467/2525acca-2834-459c-b5a3-fd19c49fde0b)
+![Alt text](KnowledgeBaseSchema.drawio-1.png)
 
 **TODO** add NoteNoteConnection, NoteIndexConnection, IndexIndexConnection tables for more arbitrary connection functionality.
 each of these tables would have their associative IDs, and a short text body describing the conection of ideas.
 
 **or** could make one Connection table, attributes would be NoteId, IndexCardId, RelatedNoteId, RelatedIndexCardId, TextBody.
-- establish rule that a connection can only be made between two entities per record, and whichever one is not present (RelatedNoteId, RelatedIndexCardId) is NULL.
+
+-   establish rule that a connection can only be made between two entities per record, and whichever one is not present (RelatedNoteId, RelatedIndexCardId) is NULL.
