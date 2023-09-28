@@ -42,7 +42,7 @@ SELECT * FROM KnowledgeBase.SourceMaterial;
 
 -- Test query to see what users added each source material
 
-SELECT S.Title AS [Source Material], S.SourceMaterialEdition, CONCAT(U.FirstName, ' ',  U.LastName) AS [Username]
+SELECT S.Title AS [Source Material], S.SourceMaterialEdition, S.SourceMaterialType, CONCAT(U.FirstName, ' ',  U.LastName) AS [Username]
 FROM KnowledgeBase.SourceMaterial S
 LEFT OUTER JOIN
 KnowledgeBase.UserProfile U
