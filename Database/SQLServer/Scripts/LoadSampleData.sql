@@ -33,7 +33,8 @@ INSERT INTO KnowledgeBase.SourceMaterial (
 VALUES
     ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1982', '3'),
     ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1954', '2'),
-    ('Ethics, the Fundamentals', '2007', 'Blackwell Publishing', 'Book', '2007', '2');
+    ('Ethics, the Fundamentals', '2007', 'Blackwell Publishing', 'Book', '2007', '2'),
+    ('Local Hotdog Stand Owner Leads Movement To End Squirrel Watching', '20220327', 'Washington Post', 'News Article', '20230925', 4);
 
 GO
 
