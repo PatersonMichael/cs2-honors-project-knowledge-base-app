@@ -23,7 +23,7 @@ ALTER DATABASE KnowledgeBase
 ALTER DATABASE KnowledgeBase
     ADD FILE (
         NAME = KnowledgeBase_dat,
-        FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\knowledgebasedat.mdf'
+        FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\knowledgebase_dat.mdf'
     )
     TO FILEGROUP KnowledgeBase_dat;
 
@@ -31,8 +31,8 @@ ALTER DATABASE KnowledgeBase
     ADD LOG FILE (
         NAME = KnowledgeBase_log,
         -- Pick one filename, if system only has one drive, choose c drive, otherwise choose D or define the drive you will use.
-        -- FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\KnowledgeBaselog.ldf'
-        -- FILENAME = 'D:\SQL\SQLEXPRESS\KnowlegeBase\LOGS\KnowledgeBaselog.ldf'
+        -- FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\knowledgebase_log.ldf'
+        FILENAME = 'D:\SQL\SQLEXPRESS\KnowlegeBase\LOGS\KnowledgeBase_log.ldf'
     );
 
 GO
