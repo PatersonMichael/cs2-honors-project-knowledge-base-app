@@ -31,8 +31,8 @@ ALTER DATABASE KnowledgeBase
     ADD LOG FILE (
         NAME = KnowledgeBase_log,
         -- Pick one filename, if system only has one drive, choose c drive, otherwise choose D or define the drive you will use.
-        -- FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\knowledgebase_log.ldf'
-        FILENAME = 'D:\SQL\SQLEXPRESS\KnowlegeBase\LOGS\KnowledgeBase_log.ldf'
+        FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\knowledgebase_log.ldf'
+        -- FILENAME = 'D:\SQL\SQLEXPRESS\KnowlegeBase\LOGS\KnowledgeBase_log.ldf'
     );
 
 GO
