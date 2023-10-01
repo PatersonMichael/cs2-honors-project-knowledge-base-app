@@ -5,8 +5,8 @@ GO
 
 -- Drop existing tables 
 
-DROP TABLE IF EXISTS KnowledgeBase.NoteKeyword, KnowledgeBase.ExcerptCardKeyword, KnowledgeBase.Keyword, KnowledgeBase.Note, KnowledgeBase.Citation,
-    KnowledgeBase.ExcerptCard, KnowledgeBase.SourceMaterialAuthor, KnowledgeBase.Author, KnowledgeBase.SourceMaterial, KnowledgeBase.UserProfile;
+DROP TABLE IF EXISTS KnowledgeBase.NoteKeyword, KnowledgeBase.ExcerptCardKeyword, KnowledgeBase.Keyword, KnowledgeBase.Note, KnowledgeBase.ExcerptCard,
+    KnowledgeBase.Citation, KnowledgeBase.SourceMaterialAuthor, KnowledgeBase.Author, KnowledgeBase.SourceMaterial, KnowledgeBase.UserProfile;
 
 -- Create Tables
 
@@ -73,7 +73,7 @@ CREATE TABLE KnowledgeBase.SourceMaterialAuthor (
             ON DELETE CASCADE,
     CONSTRAINT FK_SourceMaterialAuthor_AuthorID_Author_AuthorID
         FOREIGN KEY (AuthorID) REFERENCES KnowledgeBase.Author (AuthorID)
-            ON DELETE CASCADE
+            ON DELETE NO ACTION
 )
 ON KnowledgeBase_dat
 WITH (DATA_COMPRESSION = PAGE);
@@ -94,7 +94,7 @@ CREATE TABLE KnowledgeBase.Citation (
             ON DELETE CASCADE,
     CONSTRAINT FK_Citation_SourceMaterialID_SourceMaterial_SourceMaterialID 
         FOREIGN KEY (SourceMaterialID) REFERENCES KnowledgeBase.SourceMaterial (SourceMaterialID)
-            ON DELETE SET NULL
+            ON DELETE NO ACTION
 )
 ON KnowledgeBase_dat
 WITH (DATA_COMPRESSION = PAGE);
@@ -116,7 +116,7 @@ CREATE TABLE KnowledgeBase.ExcerptCard (
             ON DELETE CASCADE,
     CONSTRAINT FK_ExcerptCard_CitationID_Citation_CitationID
         FOREIGN KEY (CitationID) REFERENCES KnowledgeBase.Citation (CitationID)
-            ON DELETE SET NULL
+            ON DELETE NO ACTION
 )
 ON KnowledgeBase_dat
 WITH (DATA_COMPRESSION = PAGE);
@@ -148,7 +148,7 @@ CREATE TABLE KnowledgeBase.ExcerptCardKeyword (
             ON DELETE CASCADE,
     CONSTRAINT FK_ExcerptCardKeyword_KeywordID_Keyword_KeywordID
         FOREIGN KEY (KeywordID) REFERENCES KnowledgeBase.Keyword (KeywordID)
-            ON DELETE CASCADE
+            ON DELETE NO ACTION
 )
 ON KnowledgeBase_dat
 WITH (DATA_COMPRESSION = PAGE);
@@ -183,7 +183,7 @@ CREATE TABLE KnowledgeBase.NoteKeyword (
             ON DELETE CASCADE,
     CONSTRAINT FK_NoteKeyword_KeywordID_Keyword_KeywordID
         FOREIGN KEY (KeywordID) REFERENCES KnowledgeBase.Keyword (KeywordID)
-            ON DELETE CASCADE
+            ON DELETE NO ACTION
 )
 ON KnowledgeBase_dat
 WITH (DATA_COMPRESSION = PAGE);
