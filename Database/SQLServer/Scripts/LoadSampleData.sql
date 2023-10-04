@@ -10,13 +10,14 @@ INSERT INTO KnowledgeBase.UserProfile (
     LastName,
     Email,
     CreationDate,
-    BirthDate
+    BirthDate,
+    Nametag
 )
 VALUES
-    ('John', 'Smith', 'JSmith@Sample.com', '20230908', '19980929'),
-    ('Sarah', 'Smith', 'SSmith@Sample.com', '20230908', '19890924'),
-    ('Gabe', 'Oliver', 'NotyourFriend27@gweegel.org', '20230908', '20000117'),
-    ('Nickel', 'Beck', 'GrossGuy@bahoo.com', '20230908', '20130522');
+    ('John', 'Smith', 'JSmith@Sample.com', '20230908', '19980929', 'theCoolestJ$mith'),
+    ('Sarah', 'Smith', 'SSmith@Sample.com', '20230908', '19890924', 'wifeySarah'),
+    ('Gabe', 'Oliver', 'NotyourFriend27@gweegel.org', '20230908', '20000117', 'NotYourFriend27'),
+    ('Nickel', 'Beck', 'GrossGuy@bahoo.com', '20230908', '20130522', 'Goober98');
 
 GO
 
@@ -152,7 +153,7 @@ SELECT * FROM KnowledgeBase.Note;
 
 -- Test query to see what users added each source material, and each source material's author
 
-SELECT S.Title AS [Source Material], S.SourceMaterialEdition AS [Edition], CONCAT(A.FirstName, ' ', A.LastName) AS [Author], S.SourceMaterialType AS [Type], CONCAT(U.FirstName, ' ',  U.LastName) AS [Username]
+SELECT S.Title AS [Source Material], S.SourceMaterialEdition AS [Edition], CONCAT(A.FirstName, ' ', A.LastName) AS [Author], S.SourceMaterialType AS [Type], U.Nametag AS [username]
 FROM KnowledgeBase.SourceMaterial S
 INNER JOIN KnowledgeBase.SourceMaterialAuthor SA ON S.SourceMaterialID = SA.SourceMaterialID
 INNER JOIN KnowledgeBase.Author A ON A.AuthorID = SA.AuthorID
@@ -162,7 +163,7 @@ ON S.UserProfileID = U.UserProfileID
 
 -- Test query: searching for excerpt card based on keyword
 
-SELECT E.Title, E.Excerpt, K.Name AS [Keyword], CONCAT(U.FirstName, ' ',  U.LastName) AS [Username]
+SELECT E.Title, E.Excerpt, K.Name AS [Keyword], U.Nametag AS [username]
 FROM KnowledgeBase.ExcerptCard E
 INNER JOIN KnowledgeBase.ExcerptCardKeyword EK ON E.ExcerptCardID = EK.ExcerptCardID
 INNER JOIN KnowledgeBase.Keyword K ON EK.KeywordID = K.KeywordID
@@ -171,7 +172,7 @@ WHERE K.Name LIKE '%evil%';
 
 -- Searching for keyword
 
-SELECT N.Title, N.Body, K.Name AS [Keyword], CONCAT(U.FirstName, ' ',  U.LastName) AS [Username]
+SELECT N.Title, N.Body, K.Name AS [Keyword], U.Nametag AS [username]
 FROM KnowledgeBase.Note N
 INNER JOIN KnowledgeBase.NoteKeyword NK ON N.NoteID = NK.NoteID
 INNER JOIN KnowledgeBase.Keyword K ON NK.KeywordID = K.KeywordID

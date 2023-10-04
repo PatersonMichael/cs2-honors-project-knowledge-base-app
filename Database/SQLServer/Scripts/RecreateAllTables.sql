@@ -19,6 +19,8 @@ CREATE TABLE KnowledgeBase.UserProfile (
     Email NVARCHAR(320) NOT NULL,
     CreationDate DATETIME2(0) NOT NULL,
     BirthDate DATE NOT NULL,
+    Nametag NVARCHAR(60) NOT NULL,
+    CONSTRAINT UQ_UserProfile_Nametag UNIQUE NONCLUSTERED (Nametag),
     CONSTRAINT PK_UserProfile_UserProfileID PRIMARY KEY CLUSTERED (UserProfileID ASC),
     CONSTRAINT AK_UserProfile_Email UNIQUE NONCLUSTERED (Email)
 )
