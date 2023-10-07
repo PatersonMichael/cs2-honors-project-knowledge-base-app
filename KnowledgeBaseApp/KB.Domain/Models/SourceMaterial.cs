@@ -1,0 +1,33 @@
+﻿using KB.Domain.Models.Enums;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KB.Domain.Models
+{
+    internal class SourceMaterial
+    {
+        public int SourceMaterialId { get; set; }
+
+        [Required]
+        [MaxLength(255)]
+        public string Title { get; set; }
+
+        [Required]
+        public DateOnly PublishDate { get; set; }
+
+
+        public string? Publisher { get; set; }
+
+        [Required]
+        public SourceMaterialTypes SourceMaterialType { get; set; }
+
+        public string? SourceMaterialEdition { get; set; }
+
+        [Required]
+        public int UserProfileId { get; set; }
+    }
+}
