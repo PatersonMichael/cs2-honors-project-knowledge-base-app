@@ -10,6 +10,7 @@ namespace KB.Domain.Models
 {
     internal class SourceMaterial
     {
+        [Key]
         public int SourceMaterialId { get; set; }
 
         [Required]

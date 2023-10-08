@@ -10,6 +10,7 @@ namespace KB.Domain.Models
 {
     internal class Citation
     {
+        [Key]
         public int CitationId { get; set; }
 
         [Required]
@@ -17,13 +18,12 @@ namespace KB.Domain.Models
 
         public string? ExcerptLocation { get; set; }
 
-        [Required]
         public DateOnly CreationDate { get; set; }
 
-        [Required]
+        [Required, Key]
         public int UserProfileId { get; set; }
 
-        [Required]
+        [Required, Key]
         public int SourceMaterialId { get; set; }
     }
 }

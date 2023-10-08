@@ -9,6 +9,7 @@ namespace KB.Domain.Models
 {
     internal class UserProfile
     {
+        [Key]
         public int UserProfileId { get; set; }
 
         [Required]

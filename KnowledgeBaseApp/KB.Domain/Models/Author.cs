@@ -9,6 +9,7 @@ namespace KB.Domain.Models
 {
     internal class Author
     {
+        [Key]
         public int AuthorId { get; set; }
 
         [Required]
@@ -19,7 +20,7 @@ namespace KB.Domain.Models
         [MaxLength(200)]
         public string LastName { get; set; }
 
-        [Required]
+        [Required, Key]
         public int UserProfileId { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace KB.Domain.Models
 {
     internal class SourceMaterialAuthor
     {
-        [Required]
+        [Required, Key]
         public int SourceMaterialId { get; set; }
 
-        [Required]
+        [Required, Key]
         public int AuthorId { get; set; }
     }
 }
