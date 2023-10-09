@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class NoteKeyword
+    public class NoteKeyword
     {
         [Required, Key]
         public int NoteId { get; set; }

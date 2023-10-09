@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class ExcerptCardKeyword
+    public class ExcerptCardKeyword
     {
         [Required, Key]
         public int ExcerptCardId {  get; set; }

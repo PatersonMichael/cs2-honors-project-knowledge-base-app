@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class Keyword
+    public class Keyword
     {
         [Key]
         public int KeywordId { get; set; }

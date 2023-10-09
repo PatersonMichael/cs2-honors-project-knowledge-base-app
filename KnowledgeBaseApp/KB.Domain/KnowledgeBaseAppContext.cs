@@ -8,7 +8,7 @@ using KB.Domain.Models;
 
 namespace KB.Domain
 {
-    internal class KnowledgeBaseAppContext : DbContext
+    public class KnowledgeBaseAppContext : DbContext
     {
         public KnowledgeBaseAppContext(DbContextOptions<KnowledgeBaseAppContext> options) : base(options)
         {

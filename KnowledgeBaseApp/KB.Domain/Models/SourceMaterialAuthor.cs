@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class SourceMaterialAuthor
+    public class SourceMaterialAuthor
     {
         [Required, Key]
         public int SourceMaterialId { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class Citation
+    public class Citation
     {
         [Key]
         public int CitationId { get; set; }

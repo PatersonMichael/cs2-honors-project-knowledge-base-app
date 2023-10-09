@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models
 {
-    internal class SourceMaterial
+    public class SourceMaterial
     {
         [Key]
         public int SourceMaterialId { get; set; }

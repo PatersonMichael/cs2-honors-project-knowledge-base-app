@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KB.Domain.Models
 {
-    internal class UserProfile
+    public class UserProfile
     {
         [Key]
         public int UserProfileId { get; set; }
