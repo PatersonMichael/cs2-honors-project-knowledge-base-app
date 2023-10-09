@@ -39,8 +39,18 @@ namespace KB.Domain
         {
             modelBuilder.HasDefaultSchema("KnowledgeBase");
 
+            // ------- Mapping Properties from Domain Models to DB Tables using Entity Framework ModelBuilder --------
+
             // UserProfile Properties
             modelBuilder.Entity<UserProfile>().ToTable("UserProfile").HasKey(x => x.UserProfileId);
+            modelBuilder.Entity<UserProfile>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            modelBuilder.Entity<UserProfile>().Property(x => x.FirstName).HasColumnName("FirstName");
+            modelBuilder.Entity<UserProfile>().Property(x => x.LastName).HasColumnName("LastName");
+            modelBuilder.Entity<UserProfile>().Property(x => x.Email).HasColumnName("Email");
+            modelBuilder.Entity<UserProfile>().Property(x => x.CreationDate).HasColumnName("CreationDate");
+            modelBuilder.Entity<UserProfile>().Property(x => x.BirthDate).HasColumnName("BirthDate");
+            modelBuilder.Entity<UserProfile>().Property(x => x.Password).HasColumnName("Password");
+            modelBuilder.Entity<UserProfile>().Property(x => x.Nametag).HasColumnName("Nametag");
 
             // Author Properties
             
