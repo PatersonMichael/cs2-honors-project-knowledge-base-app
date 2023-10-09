@@ -35,11 +35,14 @@ namespace KB.Domain
 
         public DbSet<NoteKeyword> NoteKeywords { get; set; }
 
+
+
+
+        // ------- Mapping Properties from Domain Models to DB Tables using Entity Framework ModelBuilder --------
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("KnowledgeBase");
-
-            // ------- Mapping Properties from Domain Models to DB Tables using Entity Framework ModelBuilder --------
 
             // UserProfile Properties
             modelBuilder.Entity<UserProfile>().ToTable("UserProfile").HasKey(x => x.UserProfileId);
