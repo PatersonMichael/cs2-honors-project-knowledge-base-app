@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Models.Enums
 {
-    internal enum Formats
+    public enum Formats
     {
         APA,
         MLA,

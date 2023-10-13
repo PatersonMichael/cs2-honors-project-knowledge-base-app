@@ -26,7 +26,7 @@ namespace KB.Domain.Models
 
         public DateTime CreationDate { get; set; }
 
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [MaxLength(256)]

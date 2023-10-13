@@ -11,13 +11,14 @@ INSERT INTO KnowledgeBase.UserProfile (
     Email,
     CreationDate,
     BirthDate,
-    Nametag
+    Nametag,
+    [Password]
 )
 VALUES
-    ('John', 'Smith', 'JSmith@Sample.com', '20230908', '19980929', 'theCoolestJ$mith'),
-    ('Sarah', 'Smith', 'SSmith@Sample.com', '20230908', '19890924', 'wifeySarah'),
-    ('Gabe', 'Oliver', 'NotyourFriend27@gweegel.org', '20230908', '20000117', 'NotYourFriend27'),
-    ('Nickel', 'Beck', 'GrossGuy@bahoo.com', '20230908', '20130522', 'Goober98');
+    ('John', 'Smith', 'JSmith@Sample.com', '20230908', '19980929', 'theCoolestJ$mith', 'Str0ngp4$$word'),
+    ('Sarah', 'Smith', 'SSmith@Sample.com', '20230908', '19890924', 'wifeySarah', 'Str0ngp4$$word'),
+    ('Gabe', 'Oliver', 'NotyourFriend27@gweegel.org', '20230908', '20000117', 'NotYourFriend27', 'Str0ngp4$$word'),
+    ('Nickel', 'Beck', 'GrossGuy@bahoo.com', '20230908', '20130522', 'Goober98', 'Str0ngp4$$word');
 
 GO
 
