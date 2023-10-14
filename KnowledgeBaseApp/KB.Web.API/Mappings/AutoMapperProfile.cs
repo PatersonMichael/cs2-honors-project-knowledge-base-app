@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using KB.Domain.Models;
 using KB.Web.API.DtoModels;
+using Author = KB.Domain.Models.Author;
+using AuthorDto = KB.Web.API.DtoModels.Author;
 
 namespace KB.Web.API.Mappings
 {
@@ -10,9 +12,11 @@ namespace KB.Web.API.Mappings
         {
             // domain object to Dto
             CreateMap<UserProfile, UserProfileDto>();
+            CreateMap<Author, AuthorDto>();
 
             // Dto to domain object
             CreateMap<UserProfileDto, UserProfile>();
+            CreateMap<AuthorDto, Author>();
         }
     }
 }
