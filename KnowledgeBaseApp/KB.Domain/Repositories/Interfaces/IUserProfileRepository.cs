@@ -22,6 +22,5 @@ namespace KB.Domain.Repositories.Interfaces
         Task<UserProfile> PutUserProfileAsync(int id, UserProfile userProfile);
 
         // Delete a user async
-        Task DeleteUserProfileAsync(int id);
-    }
+        Task DeleteUserProfileAsync(int id);    }
 }

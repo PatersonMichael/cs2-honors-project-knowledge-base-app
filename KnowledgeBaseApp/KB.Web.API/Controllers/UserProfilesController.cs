@@ -3,6 +3,7 @@ using KB.Common.Exceptions;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
 using Microsoft.AspNetCore.Mvc;
+using UserProfileEntity = KB.Domain.Models.UserProfile;
 
 namespace KB.Web.API.Controllers
 {
@@ -14,6 +15,8 @@ namespace KB.Web.API.Controllers
         private readonly ILogger<UserProfilesController> _logger;
         private readonly IMapper _mapper;
         private readonly IUserProfileRepository _userProfileRepository;
+
+        // TODO move user GET requests to different model as to not pass on sensitive information
 
         public UserProfilesController(ILogger<UserProfilesController> logger, IMapper mapper, IUserProfileRepository userProfileRepository)
         {
@@ -66,11 +69,29 @@ namespace KB.Web.API.Controllers
             }
             else
             {
-                throw new NotFoundException("User Not Found");
+                //throw new NotFoundException("User Not Found");
                 return NotFound();
             }
 
             return Ok(userProfileDto);
+        }
+
+        // Post new User
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> PostUserProfileAsync([FromBody] UserProfileDto userProfile)
+        {
+            _logger.LogInformation("Begin PostCropAsync");
+
+            UserProfileEntity userProfileEntity = _mapper.Map<UserProfileEntity>(userProfile);
+
+            userProfileEntity = await _userProfileRepository.PostUserProfileAsync(userProfileEntity);
+
+            userProfile = _mapper.Map<UserProfileDto>(userProfileEntity);
+
+            return CreatedAtAction(nameof(GetUserProfileAsync), "UserProfiles", new { id = userProfile.UserProfileId }, userProfile);
         }
 
 

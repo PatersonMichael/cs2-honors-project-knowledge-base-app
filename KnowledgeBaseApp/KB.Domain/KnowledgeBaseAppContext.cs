@@ -56,6 +56,11 @@ namespace KB.Domain
             modelBuilder.Entity<UserProfile>().Property(x => x.Nametag).HasColumnName("Nametag");
 
             // Author Properties
+            modelBuilder.Entity<Author>().ToTable("Author").HasKey(x => x.AuthorId);
+            modelBuilder.Entity<Author>().Property(x => x.AuthorId).HasColumnName("AuthorID");
+            modelBuilder.Entity<Author>().Property(x => x.FirstName).HasColumnName("FirstName");
+            modelBuilder.Entity<Author>().Property(x => x.LastName).HasColumnName("LastName");
+            modelBuilder.Entity<Author>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
             
             // Citation Properties
 

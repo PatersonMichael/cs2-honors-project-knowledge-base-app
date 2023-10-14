@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KB.Web.API.Controllers
 {
-    [Microsoft.AspNetCore.Components.Route("api/Authors")]
+    [Route("api/Authors")]
     [Produces("application/json")]
     [ApiController]
     public class AuthorController : ControllerBase
@@ -29,6 +29,16 @@ namespace KB.Web.API.Controllers
             _logger.LogInformation("Begin GetAuthorsAsync");
 
             var authorEntities = await _authorRepository.GetAuthorsAsync();
+
+            IList<Author> authors = new List<Author>();
+
+            // if valid authors, map to dto
+            if (authorEntities != null)
+            {
+                authors = _mapper.Map<List<Author>>(authorEntities);
+            }
+
+            return authors;
         }
     }
 }
