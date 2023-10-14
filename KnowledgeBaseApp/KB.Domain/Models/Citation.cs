@@ -18,12 +18,12 @@ namespace KB.Domain.Models
 
         public string? ExcerptLocation { get; set; }
 
-        public DateOnly CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        [Required, Key]
+        [Required]
         public int UserProfileId { get; set; }
 
-        [Required, Key]
+        [Required]
         public int SourceMaterialId { get; set; }
     }
 }

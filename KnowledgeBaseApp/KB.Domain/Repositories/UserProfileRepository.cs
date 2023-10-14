@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace KB.Domain.Repositories
 {
+    /// <summary>
+    ///  User Profile
+    /// </summary>
     public class UserProfileRepository : IUserProfileRepository
     {
         // declare db context 
@@ -26,6 +29,10 @@ namespace KB.Domain.Repositories
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Returns a collection of User Profiles
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<UserProfile>> GetUserProfilesAsync()
         {
             return await _context.UserProfiles

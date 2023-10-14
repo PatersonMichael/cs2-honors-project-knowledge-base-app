@@ -4,15 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace KB.Domain.Models
 {
+    [PrimaryKey(nameof(ExcerptCardId), nameof(KeywordId))]
     public class ExcerptCardKeyword
     {
-        [Required, Key]
+        [Required]
         public int ExcerptCardId {  get; set; }
 
-        [Required, Key]
+        [Required]
         public int KeywordId { get; set; }
     }
 }

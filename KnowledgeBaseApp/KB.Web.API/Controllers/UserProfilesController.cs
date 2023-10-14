@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KB.Common.Exceptions;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
 using Microsoft.AspNetCore.Mvc;
@@ -47,7 +48,7 @@ namespace KB.Web.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> GetUserProfileAsync(int id)
+        public async Task<IActionResult> GetUserProfileAsync([FromRoute]int id)
         {
             _logger.LogInformation("Begin GetUserProfileAsync");
 
@@ -65,6 +66,7 @@ namespace KB.Web.API.Controllers
             }
             else
             {
+                throw new NotFoundException("User Not Found");
                 return NotFound();
             }
 

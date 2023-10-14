@@ -10,7 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
+using Serilog.Formatting.Compact;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace KB.Web.API
 {
@@ -28,14 +32,9 @@ namespace KB.Web.API
 
             // Setup logger
             // using Serilog library for nice logging
+
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
-                .Enrich.FromLogContext()
-                //.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                .MinimumLevel.Debug()
-                .WriteTo.Debug()
-                .WriteTo.Console(
-                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
                 .CreateLogger();
 
             //TODO add logging to files OR database?
@@ -76,7 +75,29 @@ namespace KB.Web.API
 
             builder.Host.UseSerilog();
 
+            // Swagger
+            builder.Services.AddSwaggerGen(opts =>
+            {
+                opts.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Knowledge Base API",
+                    Description = "An ASP.NET Core Web API for managing Knowledge Base App Entities",
+                });
+            });
+
             var app = builder.Build();
+
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
+            }
 
             app.UseSerilogRequestLogging();
 

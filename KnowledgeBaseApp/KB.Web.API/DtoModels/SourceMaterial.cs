@@ -1,34 +1,22 @@
-﻿using KB.Domain.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SourceMaterialTypes = KB.Web.API.DtoModels.Enums.SourceMaterialTypes;
 
-namespace KB.Domain.Models
+namespace KB.Web.API.DtoModels
 {
     public class SourceMaterial
     {
-        [Key]
         public int SourceMaterialId { get; set; }
 
-        [Required]
-        [MaxLength(255)]
         public string Title { get; set; }
 
-        [Required]
         public DateTime PublishDate { get; set; }
 
 
         public string? Publisher { get; set; }
 
-        [Required]
         public SourceMaterialTypes SourceMaterialType { get; set; }
 
         public string? SourceMaterialEdition { get; set; }
 
-        [Required]
         public int UserProfileId { get; set; }
     }
 }

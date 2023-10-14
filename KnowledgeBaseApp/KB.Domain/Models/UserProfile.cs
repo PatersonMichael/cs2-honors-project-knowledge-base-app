@@ -7,11 +7,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KB.Domain.Models
 {
+    /// <summary>
+    /// User Profile
+    /// </summary>
     public class UserProfile
     {
+        /// <summary>Gets or sets the user profile identifier.</summary>
+        /// <value>The user profile identifier.</value>
         [Key]
         public int UserProfileId { get; set; }
 
+        /// <summary>Gets or sets the first name.</summary>
+        /// <value>The first name.</value>
         [Required]
         [MaxLength(100)]
         public string FirstName { get; set; }
