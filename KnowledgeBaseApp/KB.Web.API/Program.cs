@@ -9,26 +9,38 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using Serilog.Events;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 namespace KB.Web.API
 {
     public class Program
     {
-        public static IConfigurationBuilder Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile(
-                $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
-                optional: true)
-            .AddEnvironmentVariables();
 
         public static int Main(string[] args)
         {
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+                .Build();
+
+            // Setup logger
+            // using Serilog library for nice logging
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .Enrich.FromLogContext()
+                //.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                .MinimumLevel.Debug()
+                .WriteTo.Debug()
+                .WriteTo.Console(
+                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
+                .CreateLogger();
+
+            //TODO add logging to files OR database?
+
             var builder = WebApplication.CreateBuilder(args);
-
-
-           
 
             // Configure Services
 
@@ -62,7 +74,11 @@ namespace KB.Web.API
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<UserProfileValidator>();
 
+            builder.Host.UseSerilog();
+
             var app = builder.Build();
+
+            app.UseSerilogRequestLogging();
 
             // Cross origin resource sharing
             // Enables access and sharing between different entities on internet
@@ -84,18 +100,10 @@ namespace KB.Web.API
                 endpoints.MapControllers();
             });
 
-            // Setup logger
-            // using Serilog library for nice logging
-            Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .MinimumLevel.Debug()
-                .WriteTo.Console(
-                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
-                .CreateLogger();
-
-            //TODO add logging to files OR database?
+           
             try
             {
+
                 Log.Information("Starting Web API");
 
                 app.MapGet("/", () => "Hello World!");
