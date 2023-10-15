@@ -3,6 +3,7 @@ using KB.Common.Exceptions;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using UserProfileEntity = KB.Domain.Models.UserProfile;
 
 namespace KB.Web.API.Controllers
@@ -83,7 +84,7 @@ namespace KB.Web.API.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> PostUserProfileAsync([FromBody] UserProfileDto userProfile)
         {
-            _logger.LogInformation("Begin PostCropAsync");
+            _logger.LogInformation("Begin PostUserProfileAsync");
 
             UserProfileEntity userProfileEntity = _mapper.Map<UserProfileEntity>(userProfile);
 
@@ -92,6 +93,38 @@ namespace KB.Web.API.Controllers
             userProfile = _mapper.Map<UserProfileDto>(userProfileEntity);
 
             return CreatedAtAction(nameof(GetUserProfileAsync), "UserProfiles", new { id = userProfile.UserProfileId }, userProfile);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType (StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> PutUserProfileAsync(int id, UserProfileDto userProfile)
+        {
+            _logger.LogInformation("Begin PutUserProfileAsync");
+            
+            // what kind of problems could occur when asking to update a user profile?
+
+            // User doesn't exist in DB
+            // Invalid data
+            // id is invalid
+            if (id != userProfile.UserProfileId)
+            {
+                return BadRequest();
+            }
+
+            UserProfileEntity userProfileEntity = _mapper.Map<UserProfileEntity>(userProfile);
+
+            userProfileEntity = await _userProfileRepository.PutUserProfileAsync(id, userProfileEntity);
+
+
+            if (userProfile != null)
+            {
+                userProfile = _mapper.Map<UserProfileDto>(userProfileEntity);
+            }
+
+            return Ok(userProfile); 
         }
 
 
