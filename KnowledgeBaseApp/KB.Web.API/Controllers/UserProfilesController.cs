@@ -95,12 +95,12 @@ namespace KB.Web.API.Controllers
             return CreatedAtAction(nameof(GetUserProfileAsync), "UserProfiles", new { id = userProfile.UserProfileId }, userProfile);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType (StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> PutUserProfileAsync(int id, UserProfileDto userProfile)
+        public async Task<IActionResult> PutUserProfileAsync([FromRoute] int id, [FromBody] UserProfileDto userProfile)
         {
             _logger.LogInformation("Begin PutUserProfileAsync");
             
@@ -125,6 +125,24 @@ namespace KB.Web.API.Controllers
             }
 
             return Ok(userProfile); 
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteUserProfileAsync([FromRoute] int id)
+        {
+            _logger.LogInformation("Begin DeleteUserProfileAsync");
+
+            if (id == 0)
+            {
+                return BadRequest("id is needed");
+            }
+
+            await _userProfileRepository.DeleteUserProfileAsync(id);
+
+            return NoContent();
         }
 
 

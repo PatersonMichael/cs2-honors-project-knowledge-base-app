@@ -20,6 +20,8 @@ namespace KB.Domain.Models
         [MaxLength(200)]
         public string LastName { get; set; }
 
+        public UserProfile UserProfile { get; set; }
+
         [Required]
         public int UserProfileId { get; set; }
     }

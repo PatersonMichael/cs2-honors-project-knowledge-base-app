@@ -12,11 +12,13 @@ namespace KB.Web.API.Mappings
         {
             // domain object to Dto
             CreateMap<UserProfile, UserProfileDto>();
-            CreateMap<Author, AuthorDto>();
+            CreateMap<Author, AuthorDto>()
+                .ForMember(dest => dest.UserProfileId, opt => opt.MapFrom(src => src.UserProfileId));
 
             // Dto to domain object
             CreateMap<UserProfileDto, UserProfile>();
-            CreateMap<AuthorDto, Author>();
+            CreateMap<AuthorDto, Author>()
+                .ForMember(dest => dest.UserProfile, opt => opt.Ignore());
         }
     }
 }

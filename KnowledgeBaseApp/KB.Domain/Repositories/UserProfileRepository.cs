@@ -48,6 +48,7 @@ namespace KB.Domain.Repositories
             try
             {
                 var UserProfile = await _context.UserProfiles
+                    .Include(x => x.Authors)
                     .AsNoTracking()
                     .SingleAsync(x => x.UserProfileId == id);
 
@@ -75,6 +76,16 @@ namespace KB.Domain.Repositories
                 if (UserProfileExists(userProfile.UserProfileId))
                 {
                     throw new ConflictException("User already exists");
+                }
+
+                if (UserEmailExists(userProfile.Email))
+                {
+                    throw new ConflictException("Email already used");
+                }
+
+                if (UserNameTagExists(userProfile.Nametag))
+                {
+                    throw new ConflictException("Nametag already taken");
                 }
 
                 throw;
@@ -133,6 +144,16 @@ namespace KB.Domain.Repositories
         private bool UserProfileExists(int id)
         {
             return _context.UserProfiles.Any(e => e.UserProfileId == id);
+        }
+
+        private bool UserEmailExists(string email)
+        {
+            return _context.UserProfiles.Any(e => e.Email == email);
+        }
+
+        private bool UserNameTagExists(string nameTag)
+        {
+            return _context.UserProfiles.Any(e => e.Nametag == nameTag);
         }
     }
 }

@@ -42,5 +42,9 @@ namespace KB.Domain.Models
         [Required]
         [MaxLength(60)]
         public string Nametag { get; set; }
+
+        // Owned/Authored Entities:
+
+        public List<Author> Authors { get; set; }
     }
 }

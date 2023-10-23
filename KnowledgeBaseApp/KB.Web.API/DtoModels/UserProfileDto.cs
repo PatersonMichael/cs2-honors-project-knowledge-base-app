@@ -17,5 +17,7 @@
         public DateTime BirthDate { get; set; }
 
         public string Nametag { get; set; }
+
+        public List<Author> Authors { get; set; }
     }
 }

@@ -61,7 +61,10 @@ namespace KB.Domain
             modelBuilder.Entity<Author>().Property(x => x.FirstName).HasColumnName("FirstName");
             modelBuilder.Entity<Author>().Property(x => x.LastName).HasColumnName("LastName");
             modelBuilder.Entity<Author>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
-            
+            modelBuilder.Entity<Author>().HasOne(a => a.UserProfile)
+                .WithMany(u => u.Authors)
+                .HasForeignKey(a => a.UserProfileId);
+
             // Citation Properties
 
             // ExcerptCard Properites
