@@ -74,6 +74,14 @@ namespace KB.Domain
             // Note Properties
 
             // SourceMaterial Properties
+            modelBuilder.Entity<SourceMaterial>().ToTable("SourceMaterial").HasKey(x => x.SourceMaterialId);
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.SourceMaterialId).HasColumnName("SourceMaterialID");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.Title).HasColumnName("Title");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.Publisher).HasColumnName("Publisher");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.PublishDate).HasColumnName("PublishDate");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.SourceMaterialEdition).HasColumnName("SourceMaterialEdition");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.SourceMaterialType).HasColumnName("SourceMaterialType");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
 
             // SourceMaterialAuthor Properties
 

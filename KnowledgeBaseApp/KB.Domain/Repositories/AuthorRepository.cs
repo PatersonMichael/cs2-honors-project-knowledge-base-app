@@ -83,7 +83,7 @@ namespace KB.Domain.Repositories
 
             if (id != author.AuthorId)
             {
-                return null;
+                throw new BadRequestException($"id {id} is invalid");
             }
 
             _context.Entry(author).State = EntityState.Modified;
@@ -96,7 +96,7 @@ namespace KB.Domain.Repositories
             {
                 if (!AuthorExists(author.AuthorId))
                 {
-                    throw new NotFoundException("Author was not found.");
+                    throw new NotFoundException("Author was not found");
                 }
 
                 throw;
