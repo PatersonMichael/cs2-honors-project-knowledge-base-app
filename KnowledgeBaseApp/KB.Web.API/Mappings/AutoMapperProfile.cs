@@ -3,6 +3,8 @@ using KB.Domain.Models;
 using KB.Web.API.DtoModels;
 using Author = KB.Domain.Models.Author;
 using AuthorDto = KB.Web.API.DtoModels.Author;
+using SourceMaterial = KB.Domain.Models.SourceMaterial;
+using SourceMaterialDto = KB.Web.API.DtoModels.SourceMaterial;
 
 namespace KB.Web.API.Mappings
 {
@@ -12,13 +14,13 @@ namespace KB.Web.API.Mappings
         {
             // domain object to Dto
             CreateMap<UserProfile, UserProfileDto>();
-            CreateMap<Author, AuthorDto>()
-                .ForMember(dest => dest.UserProfileId, opt => opt.MapFrom(src => src.UserProfileId));
-
+            CreateMap<Author, AuthorDto>();
+            CreateMap<SourceMaterial, SourceMaterialDto>();
             // Dto to domain object
             CreateMap<UserProfileDto, UserProfile>();
             CreateMap<AuthorDto, Author>()
                 .ForMember(dest => dest.UserProfile, opt => opt.Ignore());
+            CreateMap<SourceMaterialDto, SourceMaterial>();
         }
     }
 }

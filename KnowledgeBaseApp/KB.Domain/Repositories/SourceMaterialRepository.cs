@@ -12,7 +12,7 @@ using Microsoft.Identity.Client;
 
 namespace KB.Domain.Repositories
 {
-    internal class SourceMaterialRepository : ISourceMaterialRepository
+    public class SourceMaterialRepository : ISourceMaterialRepository
     {
         private readonly KnowledgeBaseAppContext _context;
         private readonly ILogger<SourceMaterialRepository> _logger;
@@ -26,6 +26,7 @@ namespace KB.Domain.Repositories
         // GET
         public async Task<IEnumerable<SourceMaterial>> GetSourceMaterialsAsync()
         {
+            _logger.LogInformation("Begin GetSourceMaterialsAsync from Repository");
             return await _context.SourceMaterials
                 .AsNoTracking()
                 .ToListAsync();
@@ -33,6 +34,8 @@ namespace KB.Domain.Repositories
 
         public async Task<SourceMaterial> GetSourceMaterialAsync(int id)
         {
+            _logger.LogInformation("Begin GetSourceMaterialAsync from Repository");
+
             try
             {
                 var sourceMaterial = await _context.SourceMaterials
@@ -50,6 +53,8 @@ namespace KB.Domain.Repositories
         // POST
         public async Task<SourceMaterial> PostSourceMaterialAsync(SourceMaterial sourceMaterial)
         {
+            _logger.LogInformation("Begin PostSourceMaterialsAsync from Repository");
+
             await _context.SourceMaterials.AddAsync(sourceMaterial);
 
             try
@@ -72,6 +77,8 @@ namespace KB.Domain.Repositories
         // PUT
         public async Task<SourceMaterial> PutSourceMaterialAsync(int id, SourceMaterial sourceMaterial)
         {
+            _logger.LogInformation("Begin PutSourceMaterialsAsync from Repository");
+
             if (id != sourceMaterial.SourceMaterialId)
             {
                 throw new BadRequestException($"id {id} is invalid");
@@ -100,6 +107,8 @@ namespace KB.Domain.Repositories
 
         public async Task DeleteSourceMaterialAsync(int id)
         {
+            _logger.LogInformation("Begin DeleteSourceMaterialsAsync from Repository");
+
             var sourceMaterial = await _context.SourceMaterials.FindAsync(id);
 
             if (sourceMaterial != null)
