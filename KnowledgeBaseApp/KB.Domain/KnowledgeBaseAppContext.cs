@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using KB.Domain.Models;
@@ -17,7 +19,7 @@ namespace KB.Domain
         // DB Entities based on Model classes
         public DbSet<UserProfile> UserProfiles { get; set; }
 
-        public DbSet<Author> Authors { get; set; }
+        //public DbSet<Author> Authors { get; set; }
 
         public DbSet<Citation> Citations { get; set; }
 
@@ -29,7 +31,7 @@ namespace KB.Domain
 
         public DbSet<SourceMaterial> SourceMaterials { get; set; }
 
-        public DbSet<SourceMaterialAuthor> SourceMaterialAuthors { get; set; }
+        //public DbSet<SourceMaterialAuthor> SourceMaterialAuthors { get; set; }
 
         public DbSet<ExcerptCardKeyword> ExcerptCardKeywords { get; set; }
 
@@ -56,14 +58,18 @@ namespace KB.Domain
             modelBuilder.Entity<UserProfile>().Property(x => x.Nametag).HasColumnName("Nametag");
 
             // Author Properties
-            modelBuilder.Entity<Author>().ToTable("Author").HasKey(x => x.AuthorId);
-            modelBuilder.Entity<Author>().Property(x => x.AuthorId).HasColumnName("AuthorID");
-            modelBuilder.Entity<Author>().Property(x => x.FirstName).HasColumnName("FirstName");
-            modelBuilder.Entity<Author>().Property(x => x.LastName).HasColumnName("LastName");
-            modelBuilder.Entity<Author>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
-            modelBuilder.Entity<Author>().HasOne(a => a.UserProfile)
-                .WithMany(u => u.Authors)
-                .HasForeignKey(a => a.UserProfileId);
+            //modelBuilder.Entity<Author>().ToTable("Author").HasKey(x => x.AuthorId);
+            //modelBuilder.Entity<Author>().Property(x => x.AuthorId).HasColumnName("AuthorID");
+            //modelBuilder.Entity<Author>().Property(x => x.FirstName).HasColumnName("FirstName");
+            //modelBuilder.Entity<Author>().Property(x => x.LastName).HasColumnName("LastName");
+            //modelBuilder.Entity<Author>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            //modelBuilder.Entity<Author>().HasOne(a => a.UserProfile)
+            //    .WithMany(u => u.Authors)
+            //    .HasForeignKey(a => a.UserProfileId);
+            //modelBuilder.Entity<Author>().HasMany(a => a.SourceMaterials)
+            //    .WithMany(s => s.Authors)
+            //    .UsingEntity<SourceMaterialAuthor>();
+
 
             // Citation Properties
 
@@ -82,8 +88,17 @@ namespace KB.Domain
             modelBuilder.Entity<SourceMaterial>().Property(x => x.SourceMaterialEdition).HasColumnName("SourceMaterialEdition");
             modelBuilder.Entity<SourceMaterial>().Property(x => x.SourceMaterialType).HasColumnName("SourceMaterialType");
             modelBuilder.Entity<SourceMaterial>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.AuthorFirstName).HasColumnName("AuthorFirstName");
+            modelBuilder.Entity<SourceMaterial>().Property(x => x.AuthorLastName).HasColumnName("AuthorLastName");
+            
+            //modelBuilder.Entity<SourceMaterial>().HasMany(s => s.Authors)
+            //    .WithMany(a => a.SourceMaterials)
+            //    .UsingEntity<SourceMaterialAuthor>();
 
             // SourceMaterialAuthor Properties
+            //modelBuilder.Entity<SourceMaterialAuthor>().ToTable("SourceMaterialAuthor").HasKey(x => new {x.SourceMaterialId, x.AuthorId});
+            //modelBuilder.Entity<SourceMaterialAuthor>().Property(x => x.SourceMaterialId).HasColumnName("SourceMaterialID");
+            //modelBuilder.Entity<SourceMaterialAuthor>().Property(x => x.AuthorId).HasColumnName("AuthorID");
 
             // ExcerptCardKeyword Properties
 

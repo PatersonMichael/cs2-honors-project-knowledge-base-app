@@ -9,7 +9,7 @@ namespace KB.Web.API.Configuration
         {
             // Repositories
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            //services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ISourceMaterialRepository, SourceMaterialRepository>();
         }
         

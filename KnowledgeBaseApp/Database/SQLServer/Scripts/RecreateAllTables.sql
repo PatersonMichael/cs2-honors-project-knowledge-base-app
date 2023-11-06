@@ -38,6 +38,8 @@ CREATE TABLE KnowledgeBase.SourceMaterial (
     Publisher NVARCHAR(200) NULL,
     SourceMaterialType VARCHAR(50) NOT NULL,
     SourceMaterialEdition VARCHAR(30) NULL,
+    AuthorFirstName VARCHAR(200) NOT NULL,
+    AuthorLastName VARCHAR(200) NOT NULL,
     UserProfileID INT NOT NULL,
     CONSTRAINT PK_SourceMaterial_SourceMaterialID PRIMARY KEY CLUSTERED (SourceMaterialID ASC),
     CONSTRAINT AK_SourceMaterial_Title_SourceMaterialEdition UNIQUE NONCLUSTERED (Title, SourceMaterialEdition),
@@ -51,36 +53,36 @@ GO
 
 -- Author
 
-CREATE TABLE KnowledgeBase.Author (
-    AuthorID INT IDENTITY (1,1) NOT NULL,
-    FirstName NVARCHAR(200) NOT NULL,
-    LastName NVARCHAR(200) NOT NULL,
-    UserProfileID INT NOT NULL
-    CONSTRAINT PK_Author_AuthorID PRIMARY KEY CLUSTERED (AuthorID),
-    CONSTRAINT FK_Author_UserProfileID_UserProfile_UserProfileID
-        FOREIGN KEY (UserProfileID) REFERENCES KnowledgeBase.UserProfile (UserProfileID)
-            ON DELETE CASCADE
-)
-ON KnowledgeBase_dat
-WITH (DATA_COMPRESSION = PAGE);
-GO
+-- CREATE TABLE KnowledgeBase.Author (
+--     AuthorID INT IDENTITY (1,1) NOT NULL,
+--     FirstName NVARCHAR(200) NOT NULL,
+--     LastName NVARCHAR(200) NOT NULL,
+--     UserProfileID INT NOT NULL
+--     CONSTRAINT PK_Author_AuthorID PRIMARY KEY CLUSTERED (AuthorID),
+--     CONSTRAINT FK_Author_UserProfileID_UserProfile_UserProfileID
+--         FOREIGN KEY (UserProfileID) REFERENCES KnowledgeBase.UserProfile (UserProfileID)
+--             ON DELETE CASCADE
+-- )
+-- ON KnowledgeBase_dat
+-- WITH (DATA_COMPRESSION = PAGE);
+-- GO
 
--- Source Material Author
+-- -- Source Material Author
 
-CREATE TABLE KnowledgeBase.SourceMaterialAuthor (
-    SourceMaterialID INT NOT NULL,
-    AuthorID INT NOT NULL,
-    CONSTRAINT PK_SourceMaterialAuthor_SourceMaterialID_AuthorID PRIMARY KEY CLUSTERED (SourceMaterialID ASC, AuthorID),
-    CONSTRAINT FK_SourceMaterialAuthor_SourceMaterialID_SourceMaterial_SourceMaterialID
-        FOREIGN KEY (SourceMaterialID) REFERENCES KnowledgeBase.SourceMaterial (SourceMaterialID)
-            ON DELETE CASCADE,
-    CONSTRAINT FK_SourceMaterialAuthor_AuthorID_Author_AuthorID
-        FOREIGN KEY (AuthorID) REFERENCES KnowledgeBase.Author (AuthorID)
-            ON DELETE NO ACTION
-)
-ON KnowledgeBase_dat
-WITH (DATA_COMPRESSION = PAGE);
-GO
+-- CREATE TABLE KnowledgeBase.SourceMaterialAuthor (
+--     SourceMaterialID INT NOT NULL,
+--     AuthorID INT NOT NULL,
+--     CONSTRAINT PK_SourceMaterialAuthor_SourceMaterialID_AuthorID PRIMARY KEY CLUSTERED (SourceMaterialID ASC, AuthorID),
+--     CONSTRAINT FK_SourceMaterialAuthor_SourceMaterialID_SourceMaterial_SourceMaterialID
+--         FOREIGN KEY (SourceMaterialID) REFERENCES KnowledgeBase.SourceMaterial (SourceMaterialID)
+--             ON DELETE CASCADE,
+--     CONSTRAINT FK_SourceMaterialAuthor_AuthorID_Author_AuthorID
+--         FOREIGN KEY (AuthorID) REFERENCES KnowledgeBase.Author (AuthorID)
+--             ON DELETE NO ACTION
+-- )
+-- ON KnowledgeBase_dat
+-- WITH (DATA_COMPRESSION = PAGE);
+-- GO
 
 -- Citation
 

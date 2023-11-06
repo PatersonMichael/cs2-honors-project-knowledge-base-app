@@ -24,11 +24,21 @@ namespace KB.Domain.Models
         public string? Publisher { get; set; }
 
         [Required]
-        public SourceMaterialTypes SourceMaterialType { get; set; }
+        public string SourceMaterialType { get; set; }
 
         public string? SourceMaterialEdition { get; set; }
 
+        public string AuthorFirstName { get; set; }
+
+        public string AuthorLastName { get; set; }
+
         [Required]
         public int UserProfileId { get; set; }
+
+        //public List<Author> Authors { get; }
+
+        //public List<SourceMaterialAuthor> SourceMaterialsAuthors { get; } = new();
+
+
     }
 }

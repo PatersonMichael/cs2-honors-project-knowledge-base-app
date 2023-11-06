@@ -30,13 +30,15 @@ INSERT INTO KnowledgeBase.SourceMaterial (
     Publisher,
     SourceMaterialType,
     SourceMaterialEdition,
+    AuthorFirstName,
+    AuthorLastName,
     UserProfileID
 )
 VALUES
-    ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1982', 3),
-    ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1954', 2),
-    ('Ethics, the Fundamentals', '2007', 'Blackwell Publishing', 'Book', '2007', 2),
-    ('Local Hotdog Stand Owner Leads Movement To End Squirrel Watching', '20220327', 'Washington Post', 'News Article', '20230925', 4);
+    ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1982', 'JRR', 'Tolkien', 3),
+    ('The Lord of the Rings: Fellowship of the Ring', '19540729', 'Houghton Mifflin Harcourt', 'Book', '1954', 'JRR', 'Tolkien', 2),
+    ('Ethics, the Fundamentals', '2007', 'Blackwell Publishing', 'Book', '2007', 'Julia', 'Driver', 2),
+    ('Local Hotdog Stand Owner Leads Movement To End Squirrel Watching', '20220327', 'Washington Post', 'News Article', '20230925', 'Shiddleby', 'Biggle', 4);
 
 GO
 
@@ -121,26 +123,26 @@ VALUES
     (1, 1),
     (1, 5);
 
-INSERT INTO KnowledgeBase.Author (
-    FirstName,
-    LastName,
-    UserProfileID
-)
-VALUES
-    ('JRR', 'Tolkien', 2),
-    ('Julia', 'Driver', 2),
-    ('Shmiddleby', 'Biggle', 4);
+-- INSERT INTO KnowledgeBase.Author (
+--     FirstName,
+--     LastName,
+--     UserProfileID
+-- )
+-- VALUES
+--     ('JRR', 'Tolkien', 2),
+--     ('Julia', 'Driver', 2),
+--     ('Shmiddleby', 'Biggle', 4);
 
-INSERT INTO KnowledgeBase.SourceMaterialAuthor (
-    SourceMaterialID,
-    AuthorID
-)
+-- INSERT INTO KnowledgeBase.SourceMaterialAuthor (
+--     SourceMaterialID,
+--     AuthorID
+-- )
 
-VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2),
-    (4, 3);
+-- VALUES
+--     (1, 1),
+--     (2, 1),
+--     (3, 2),
+--     (4, 3);
 
 ------------------------------------------------------------------ Sample Queries --------------------------------------------------------------------
 
@@ -151,7 +153,7 @@ SELECT * FROM KnowledgeBase.SourceMaterial;
 SELECT * FROM KnowledgeBase.Citation;
 SELECT * FROM KnowledgeBase.ExcerptCard;
 SELECT * FROM KnowledgeBase.Note;
-
+-- SELECT * FROM KnowledgeBase.SourceMaterialAuthor;
 -- Test query to see what users added each source material, and each source material's author
 
 SELECT S.Title AS [Source Material], S.SourceMaterialEdition AS [Edition], CONCAT(A.FirstName, ' ', A.LastName) AS [Author], S.SourceMaterialType AS [Type], U.Nametag AS [username]

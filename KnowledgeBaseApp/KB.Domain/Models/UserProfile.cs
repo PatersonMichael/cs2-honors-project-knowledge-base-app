@@ -45,6 +45,6 @@ namespace KB.Domain.Models
 
         // Owned/Authored Entities:
 
-        public List<Author> Authors { get; set; }
+        //public List<Author> Authors { get; set; }
     }
 }

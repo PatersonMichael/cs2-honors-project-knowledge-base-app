@@ -48,7 +48,7 @@ namespace KB.Domain.Repositories
             try
             {
                 var UserProfile = await _context.UserProfiles
-                    .Include(x => x.Authors)
+                    //.Include(x => x.Authors)
                     .AsNoTracking()
                     .SingleAsync(x => x.UserProfileId == id);
 

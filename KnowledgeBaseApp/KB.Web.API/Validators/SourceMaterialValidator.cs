@@ -10,6 +10,7 @@ namespace KB.Web.API.Validators
             RuleFor(s => s.Title).NotEmpty();
             RuleFor(s => s.PublishDate).NotEmpty();
             RuleFor(s => s.SourceMaterialType).NotEmpty();
+            RuleFor(s => s.AuthorFirstName).NotEmpty();
             RuleFor(s => s.UserProfileId).NotEmpty();
         }
     }
