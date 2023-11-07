@@ -14,7 +14,7 @@ namespace KB.Domain.Models
         public int CitationId { get; set; }
 
         [Required]
-        public Formats Format {  get; set; }
+        public string Format {  get; set; }
 
         public string? ExcerptLocation { get; set; }
 

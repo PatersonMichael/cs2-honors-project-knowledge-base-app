@@ -6,7 +6,7 @@ namespace KB.Web.API.DtoModels
     {
         public int CitationId { get; set; }
 
-        public Formats Format { get; set; }
+        public string Format { get; set; }
 
         public string? ExcerptLocation { get; set; }
 

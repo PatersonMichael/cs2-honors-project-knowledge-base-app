@@ -72,12 +72,35 @@ namespace KB.Domain
 
 
             // Citation Properties
+            modelBuilder.Entity<Citation>().ToTable("Citation").HasKey("CitationID");
+            modelBuilder.Entity<Citation>().Property(x => x.CitationId).HasColumnName("CitationID");
+            modelBuilder.Entity<Citation>().Property(x => x.Format).HasColumnName("Format");
+            modelBuilder.Entity<Citation>().Property(x => x.ExcerptLocation).HasColumnName("ExcerptLocation");
+            modelBuilder.Entity<Citation>().Property(x => x.CreationDate).HasColumnName("CreationDate");
+            modelBuilder.Entity<Citation>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            modelBuilder.Entity<Citation>().Property(x => x.SourceMaterialId).HasColumnName("SourceMaterialID");
 
             // ExcerptCard Properites
+            modelBuilder.Entity<ExcerptCard>().ToTable("ExcerptCard").HasKey("ExcerptCardID");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.Title).HasColumnName("Title");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.Excerpt).HasColumnName("Excerpt");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.CreationDate).HasColumnName("CreationDate");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.LastUpdatedDate).HasColumnName("LastUpdatedDate");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            modelBuilder.Entity<ExcerptCard>().Property(x => x.CitationId).HasColumnName("CitationID");
 
             // Keyword Properties
+            modelBuilder.Entity<Keyword>().ToTable("Keyword").HasKey("KeywordID");
+            modelBuilder.Entity<Keyword>().Property(x => x.Name).HasColumnName("Name");
+            modelBuilder.Entity<Keyword>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
 
             // Note Properties
+            modelBuilder.Entity<Note>().ToTable("Note").HasKey("NoteID");
+            modelBuilder.Entity<Note>().Property(x => x.Title).HasColumnName("Title");
+            modelBuilder.Entity<Note>().Property(x => x.Body).HasColumnName("Body");
+            modelBuilder.Entity<Note>().Property(x => x.CreationDate).HasColumnName("CreationDate");
+            modelBuilder.Entity<Note>().Property(x => x.LastUpdateDate).HasColumnName("LastUpdatedDate");
+            modelBuilder.Entity<Note>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
 
             // SourceMaterial Properties
             modelBuilder.Entity<SourceMaterial>().ToTable("SourceMaterial").HasKey(x => x.SourceMaterialId);
