@@ -5,12 +5,13 @@ namespace KB.Web.API.Configuration
 {
     public static class RepositoriesConfiguration
     {
-        public static void AddRepsitories(this IServiceCollection services)
+        public static void AddRepositories(this IServiceCollection services)
         {
             // Repositories
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             //services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ISourceMaterialRepository, SourceMaterialRepository>();
+            services.AddScoped<ICitationRepository, CitationRepository>();
         }
         
     }

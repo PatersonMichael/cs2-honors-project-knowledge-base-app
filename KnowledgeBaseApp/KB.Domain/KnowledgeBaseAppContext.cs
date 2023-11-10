@@ -79,6 +79,8 @@ namespace KB.Domain
             modelBuilder.Entity<Citation>().Property(x => x.CreationDate).HasColumnName("CreationDate");
             modelBuilder.Entity<Citation>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
             modelBuilder.Entity<Citation>().Property(x => x.SourceMaterialId).HasColumnName("SourceMaterialID");
+            modelBuilder.Entity<Citation>().HasOne(c => c.sourceMaterial).WithMany()
+                .HasForeignKey(c => c.SourceMaterialId);
 
             // ExcerptCard Properites
             modelBuilder.Entity<ExcerptCard>().ToTable("ExcerptCard").HasKey(x => x.ExcerptCardId);

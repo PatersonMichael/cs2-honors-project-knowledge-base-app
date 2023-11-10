@@ -23,7 +23,6 @@ namespace KB.Domain.Models
         [Required]
         public int UserProfileId { get; set; }
 
-        [Required]
         public int SourceMaterialId { get; set; }
 
         public SourceMaterial sourceMaterial { get; set; }

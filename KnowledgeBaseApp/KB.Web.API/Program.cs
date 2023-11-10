@@ -52,7 +52,7 @@ namespace KB.Web.API
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("KnowledgeBaseAppConnection"));
             });
 
-            builder.Services.AddRepsitories();
+            builder.Services.AddRepositories();
 
             builder.Services.AddControllers(opts =>
                 {

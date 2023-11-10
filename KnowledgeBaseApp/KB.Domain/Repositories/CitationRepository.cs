@@ -40,11 +40,12 @@ namespace KB.Domain.Repositories
 
             try
             {
-                var Citation = await _context.Citations
+                var citation = await _context.Citations
                     .AsNoTracking()
+                    .Include(x => x.sourceMaterial)
                     .SingleAsync(x => x.CitationId == id);
 
-                return Citation;
+                return citation;
             }
             catch (InvalidOperationException)
             {
@@ -56,19 +57,12 @@ namespace KB.Domain.Repositories
         public async Task<Citation> PostCitationAsync(Citation citation)
         {
             _logger.LogInformation("Begin PostCitationAsync from CitationRepository");
+            int sourceMaterialId = 0;
 
-
-            await _context.Citations.AddAsync(citation);
+             _context.Citations.Update(citation);
 
             try
             {
-                // if source material within citation already exists, use the existing source material
-                if (SourceMaterialExists(citation.sourceMaterial.SourceMaterialEdition, citation.sourceMaterial.Title))
-                {
-                    citation.sourceMaterial =
-                        ExistingSourceMaterial(citation.sourceMaterial.SourceMaterialEdition,
-                            citation.sourceMaterial.Title);
-                }
 
                 await _context.SaveChangesAsync();
             }
@@ -140,16 +134,17 @@ namespace KB.Domain.Repositories
 
         private bool SourceMaterialExists(string edition, string title)
         {
+            _logger.LogWarning("Source Material Already Exists");
             return _context.Citations.Any(x =>
                 x.sourceMaterial.SourceMaterialEdition == edition && x.sourceMaterial.Title == title);
         }
 
-        private SourceMaterial ExistingSourceMaterial(string edition, string title)
+        private int ExistingSourceMaterial(string edition, string title)
         {
             // find the source material where edition and title match the parameters
             // return the id of that source material
-
-            return _context.SourceMaterials.Single(x => x.Title == title && x.SourceMaterialEdition == edition);
+            _logger.LogInformation("Begin ExistingSourceMaterial in CitationRepository");
+            return _context.SourceMaterials.Single(x => x.Title == title && x.SourceMaterialEdition == edition).SourceMaterialId;
         }
 
     }

@@ -28,5 +28,7 @@ namespace KB.Domain.Models
 
         public int CitationId { get; set; }
 
+        public Citation Citation { get; set; }
+
     }
 }

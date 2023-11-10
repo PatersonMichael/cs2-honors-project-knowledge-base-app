@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using KB.Domain.Models;
 using KB.Web.API.DtoModels;
+using Citation = KB.Domain.Models.Citation;
+using CitationDto = KB.Web.API.DtoModels.Citation;
 //using Author = KB.Domain.Models.Author;
 //using AuthorDto = KB.Web.API.DtoModels.Author;
 using SourceMaterial = KB.Domain.Models.SourceMaterial;
@@ -23,6 +25,10 @@ namespace KB.Web.API.Mappings
             //    .ForMember(x => x.SourceMaterials, opt => opt.Ignore());
             CreateMap<SourceMaterialDto, SourceMaterial>();
             //.ForMember(x => x.Authors, opt => opt.Ignore());
+
+
+            CreateMap<Citation, CitationDto>();
+            CreateMap<CitationDto, Citation>();
         }
     }
 }
