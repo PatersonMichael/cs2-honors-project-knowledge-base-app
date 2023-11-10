@@ -90,7 +90,8 @@ namespace KB.Domain.Repositories
                 return null;
             }
 
-            _context.Entry(citation).State = EntityState.Modified;
+            //_context.Entry(citation).State = EntityState.Modified;
+            _context.Citations.Update(citation);
 
             try
             {
