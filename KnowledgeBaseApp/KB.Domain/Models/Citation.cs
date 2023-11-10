@@ -25,5 +25,7 @@ namespace KB.Domain.Models
 
         [Required]
         public int SourceMaterialId { get; set; }
+
+        public SourceMaterial sourceMaterial { get; set; }
     }
 }

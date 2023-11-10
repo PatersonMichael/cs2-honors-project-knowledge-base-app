@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using KB.Common.Exceptions;
@@ -56,10 +57,19 @@ namespace KB.Domain.Repositories
         {
             _logger.LogInformation("Begin PostCitationAsync from CitationRepository");
 
+
             await _context.Citations.AddAsync(citation);
 
             try
             {
+                // if source material within citation already exists, use the existing source material
+                if (SourceMaterialExists(citation.sourceMaterial.SourceMaterialEdition, citation.sourceMaterial.Title))
+                {
+                    citation.sourceMaterial =
+                        ExistingSourceMaterial(citation.sourceMaterial.SourceMaterialEdition,
+                            citation.sourceMaterial.Title);
+                }
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
@@ -127,6 +137,20 @@ namespace KB.Domain.Repositories
         {
             return _context.Citations.Any(x => x.CitationId == id);
         }
-    }
 
+        private bool SourceMaterialExists(string edition, string title)
+        {
+            return _context.Citations.Any(x =>
+                x.sourceMaterial.SourceMaterialEdition == edition && x.sourceMaterial.Title == title);
+        }
+
+        private SourceMaterial ExistingSourceMaterial(string edition, string title)
+        {
+            // find the source material where edition and title match the parameters
+            // return the id of that source material
+
+            return _context.SourceMaterials.Single(x => x.Title == title && x.SourceMaterialEdition == edition);
+        }
+
+    }
 }

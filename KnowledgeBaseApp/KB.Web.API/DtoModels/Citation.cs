@@ -15,5 +15,7 @@ namespace KB.Web.API.DtoModels
         public int UserProfileId { get; set; }
 
         public int SourceMaterialId { get; set; }
+
+        public SourceMaterial SourceMaterial { get; set; }
     }
 }
