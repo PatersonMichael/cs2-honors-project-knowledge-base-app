@@ -31,6 +31,7 @@ namespace KB.Domain.Repositories
 
             return await _context.Citations
                 .AsNoTracking()
+                .Include(x => x.sourceMaterial)
                 .ToListAsync();
         }
 
@@ -57,7 +58,6 @@ namespace KB.Domain.Repositories
         public async Task<Citation> PostCitationAsync(Citation citation)
         {
             _logger.LogInformation("Begin PostCitationAsync from CitationRepository");
-            int sourceMaterialId = 0;
 
              _context.Citations.Update(citation);
 
