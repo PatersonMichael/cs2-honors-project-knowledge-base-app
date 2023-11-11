@@ -11,6 +11,8 @@ using SourceMaterial = KB.Domain.Models.SourceMaterial;
 using SourceMaterialDto = KB.Web.API.DtoModels.SourceMaterial;
 using KeywordDto = KB.Web.API.DtoModels.Keyword;
 using ExcerptCardDto = KB.Web.API.DtoModels.ExcerptCard;
+using Note = KB.Domain.Models.Note;
+using NoteDto = KB.Web.API.DtoModels.Note;
 
 namespace KB.Web.API.Mappings
 {
@@ -32,6 +34,9 @@ namespace KB.Web.API.Mappings
 
             CreateMap<ExcerptCard, ExcerptCardDto>();
             CreateMap<ExcerptCardDto, ExcerptCard>();
+
+            CreateMap<Note, NoteDto>();
+            CreateMap<NoteDto, Note>();
         }
     }
 }

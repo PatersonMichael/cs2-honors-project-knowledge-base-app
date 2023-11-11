@@ -47,6 +47,7 @@ namespace KB.Domain.Repositories
             {
                 var note = await _context.Notes
                     .AsNoTracking()
+                    .Include(x => x.Keywords)
                     .SingleAsync(x => x.NoteId == id);
                 return note;
 
