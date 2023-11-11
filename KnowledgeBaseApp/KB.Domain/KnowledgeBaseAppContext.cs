@@ -91,6 +91,7 @@ namespace KB.Domain
             modelBuilder.Entity<ExcerptCard>().Property(x => x.LastUpdatedDate).HasColumnName("LastUpdatedDate");
             modelBuilder.Entity<ExcerptCard>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
             modelBuilder.Entity<ExcerptCard>().Property(x => x.CitationId).HasColumnName("CitationID");
+            modelBuilder.Entity<ExcerptCard>().HasOne(e => e.Citation).WithOne();
 
             // Keyword Properties
             modelBuilder.Entity<Keyword>().ToTable("Keyword").HasKey(x => x.KeywordId);
