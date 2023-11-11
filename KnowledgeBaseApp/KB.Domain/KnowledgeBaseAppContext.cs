@@ -110,6 +110,9 @@ namespace KB.Domain
             modelBuilder.Entity<Note>().Property(x => x.CreationDate).HasColumnName("CreationDate");
             modelBuilder.Entity<Note>().Property(x => x.LastUpdateDate).HasColumnName("LastUpdatedDate");
             modelBuilder.Entity<Note>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
+            modelBuilder.Entity<Note>().HasMany(x => x.Keywords)
+                .WithMany()
+                .UsingEntity<NoteKeyword>();
 
             // SourceMaterial Properties
             modelBuilder.Entity<SourceMaterial>().ToTable("SourceMaterial").HasKey(x => x.SourceMaterialId);
@@ -138,6 +141,9 @@ namespace KB.Domain
             modelBuilder.Entity<ExcerptCardKeyword>().Property(x => x.KeywordId).HasColumnName("KeywordID");
 
             // NoteKeyword Properties
+            modelBuilder.Entity<NoteKeyword>().ToTable("NoteKeyword").HasKey(x => new { x.KeywordId, x.NoteId });
+            modelBuilder.Entity<NoteKeyword>().Property(x => x.NoteId).HasColumnName("NoteID");
+            modelBuilder.Entity<NoteKeyword>().Property(x => x.KeywordId).HasColumnName("KeywordID");
 
         }
 

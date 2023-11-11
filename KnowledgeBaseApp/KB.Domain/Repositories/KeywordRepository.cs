@@ -64,7 +64,7 @@ namespace KB.Domain.Repositories
         {
             _logger.LogInformation("Begin PostKeywordAsync from KeywordRepository");
 
-                _context.Keywords.Add(keyword);
+                _context.Keywords.Update(keyword);
 
             try
             {
