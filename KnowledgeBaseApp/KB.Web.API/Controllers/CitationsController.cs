@@ -24,7 +24,7 @@ namespace KB.Web.API.Controllers
 
         // GET
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Citation>),StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IList<Citation>> GetCitationsAsync()
         {

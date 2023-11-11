@@ -30,5 +30,7 @@ namespace KB.Domain.Models
 
         public Citation Citation { get; set; }
 
+        public List<Keyword> Keywords { get; set; }
+
     }
 }

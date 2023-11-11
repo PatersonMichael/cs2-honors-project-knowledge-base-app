@@ -25,5 +25,7 @@ namespace KB.Domain.Models
         [Required]
         public int UserProfileId { get; set; }
 
+        public List<Keyword> Keywords { get; set; }
+
     }
 }

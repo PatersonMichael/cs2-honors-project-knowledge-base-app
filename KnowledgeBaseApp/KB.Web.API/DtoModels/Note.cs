@@ -13,5 +13,8 @@
         public DateTime LastUpdateDate { get; set; }
 
         public int UserProfileId { get; set; }
+
+        public List<Keyword> Keywords { get; set; }
+
     }
 }

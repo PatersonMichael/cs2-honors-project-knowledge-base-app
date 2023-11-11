@@ -92,6 +92,9 @@ namespace KB.Domain
             modelBuilder.Entity<ExcerptCard>().Property(x => x.UserProfileId).HasColumnName("UserProfileID");
             modelBuilder.Entity<ExcerptCard>().Property(x => x.CitationId).HasColumnName("CitationID");
             modelBuilder.Entity<ExcerptCard>().HasOne(e => e.Citation).WithOne();
+            modelBuilder.Entity<ExcerptCard>().HasMany(e => e.Keywords)
+                .WithMany()
+                .UsingEntity<ExcerptCardKeyword>();
 
             // Keyword Properties
             modelBuilder.Entity<Keyword>().ToTable("Keyword").HasKey(x => x.KeywordId);
@@ -130,6 +133,9 @@ namespace KB.Domain
             //modelBuilder.Entity<SourceMaterialAuthor>().Property(x => x.AuthorId).HasColumnName("AuthorID");
 
             // ExcerptCardKeyword Properties
+            modelBuilder.Entity<ExcerptCardKeyword>().ToTable("ExcerptCardKeyword").HasKey(x => new {x.ExcerptCardId, x.KeywordId});
+            modelBuilder.Entity<ExcerptCardKeyword>().Property(x => x.ExcerptCardId).HasColumnName("ExcerptCardID");
+            modelBuilder.Entity<ExcerptCardKeyword>().Property(x => x.KeywordId).HasColumnName("KeywordID");
 
             // NoteKeyword Properties
 

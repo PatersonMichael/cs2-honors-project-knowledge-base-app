@@ -13,6 +13,7 @@ namespace KB.Web.API.Configuration
             services.AddScoped<ISourceMaterialRepository, SourceMaterialRepository>();
             services.AddScoped<ICitationRepository, CitationRepository>();
             services.AddScoped<IKeywordRepository, KeywordRepository>();
+            services.AddScoped<IExcerptCardRepository, ExcerptCardRepository>();
         }
         
     }

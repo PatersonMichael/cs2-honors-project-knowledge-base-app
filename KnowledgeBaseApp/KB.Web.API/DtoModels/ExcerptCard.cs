@@ -14,6 +14,11 @@
 
         public int UserProfileId { get; set; }
 
+        public Citation Citation { get; set; }
+
         public int CitationId { get; set; }
+
+        public List<Keyword> Keywords { get; set; }
+
     }
 }

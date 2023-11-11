@@ -43,6 +43,7 @@ namespace KB.Domain.Repositories
                 var exCard = await _context.ExcerptCards
                     .AsNoTracking()
                     .Include(x => x.Citation)
+                    .Include(x => x.Keywords)
                     .Include(x => x.Citation.sourceMaterial)
                     .SingleAsync(x => x.ExcerptCardId == id);
 
