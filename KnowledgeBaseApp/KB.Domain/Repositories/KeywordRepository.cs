@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KB.Domain.Repositories
 {
-    internal class KeywordRepository : IKeywordRepository
+    public class KeywordRepository : IKeywordRepository
     {
         private readonly ILogger<KeywordRepository> _logger;
         private readonly KnowledgeBaseAppContext _context;

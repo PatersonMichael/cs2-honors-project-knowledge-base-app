@@ -79,6 +79,8 @@ namespace KB.Web.API.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> PostCitationAsync([FromBody] Citation citation)
         {
+            _logger.LogInformation("Begin PostCitationAsync");
+
             CitationEntity citationEntity = _mapper.Map<CitationEntity>(citation);
 
             citationEntity = await _citationRepository.PostCitationAsync(citationEntity);
@@ -113,6 +115,10 @@ namespace KB.Web.API.Controllers
             {
                 // populate dto with new entity from db
                 citation = _mapper.Map<Citation>(citationEntity);
+            }
+            else
+            {
+                return NotFound();
             }
 
             return Ok(citation);
