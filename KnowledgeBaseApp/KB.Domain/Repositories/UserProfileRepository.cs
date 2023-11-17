@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Identity.Client;
+using BCrypt.Net;
 
 namespace KB.Domain.Repositories
 {
@@ -63,6 +65,9 @@ namespace KB.Domain.Repositories
         public async Task<UserProfile> PostUserProfileAsync(UserProfile userProfile)
         {
             _logger.LogInformation("Begin PostUserProfileAsync from UserProfileRepository");
+
+            // hash and salt password
+            userProfile.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(userProfile.Password);
 
             await _context.UserProfiles.AddAsync(userProfile);
 
@@ -124,6 +129,25 @@ namespace KB.Domain.Repositories
             return userProfile;
         }
 
+       
+        public async Task<UserProfile> VerifyUserCredentialCombination(UserProfile user)
+        {
+            try
+            {
+                var userEntity = await _context.UserProfiles.SingleAsync(x => x.Email == user.Email);
+                if (BCrypt.Net.BCrypt.EnhancedVerify(user.Password, userEntity.Password))
+                {
+                    return userEntity;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                throw new BadRequestException("Invalid Credentials");
+            }
+
+            throw new BadRequestException("Invalid Credentials");
+        }
+
         public async Task DeleteUserProfileAsync(int id)
         {
             _logger.LogInformation("Begin DeleteUserProfileAsync from UserProfileRespository");
@@ -145,6 +169,7 @@ namespace KB.Domain.Repositories
         {
             return _context.UserProfiles.Any(e => e.UserProfileId == id);
         }
+        
 
         private bool UserEmailExists(string email)
         {

@@ -2,6 +2,7 @@
 using KB.Common.Exceptions;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using UserProfileEntity = KB.Domain.Models.UserProfile;
@@ -26,8 +27,9 @@ namespace KB.Web.API.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
+        [Authorize]
         [HttpGet]
-        [ProducesResponseType(typeof(List<UserProfileDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<UserProfile>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IList<UserProfileDto>> GetUserProfilesAsync()
         {
@@ -82,7 +84,7 @@ namespace KB.Web.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> PostUserProfileAsync([FromBody] UserProfileDto userProfile)
+        public async Task<IActionResult> PostUserProfileAsync([FromBody] UserProfile userProfile)
         {
             _logger.LogInformation("Begin PostUserProfileAsync");
 
@@ -90,7 +92,7 @@ namespace KB.Web.API.Controllers
 
             userProfileEntity = await _userProfileRepository.PostUserProfileAsync(userProfileEntity);
 
-            userProfile = _mapper.Map<UserProfileDto>(userProfileEntity);
+            userProfile = _mapper.Map<UserProfile>(userProfileEntity);
 
             return CreatedAtAction(nameof(GetUserProfileAsync), "UserProfiles", new { id = userProfile.UserProfileId }, userProfile);
         }
@@ -100,7 +102,7 @@ namespace KB.Web.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType (StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> PutUserProfileAsync([FromRoute] int id, [FromBody] UserProfileDto userProfile)
+        public async Task<IActionResult> PutUserProfileAsync([FromRoute] int id, [FromBody] UserProfile userProfile)
         {
             _logger.LogInformation("Begin PutUserProfileAsync");
             
@@ -121,7 +123,7 @@ namespace KB.Web.API.Controllers
 
             if (userProfile != null)
             {
-                userProfile = _mapper.Map<UserProfileDto>(userProfileEntity);
+                userProfile = _mapper.Map<UserProfile>(userProfileEntity);
             }
 
             return Ok(userProfile); 

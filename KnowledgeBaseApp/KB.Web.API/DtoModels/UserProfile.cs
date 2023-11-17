@@ -1,6 +1,6 @@
 ﻿namespace KB.Web.API.DtoModels
 {
-    public class UserProfileDto
+    public class UserProfile
     {
         public int UserProfileId { get; set; }
 

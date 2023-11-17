@@ -4,7 +4,7 @@ using KB.Web.API.DtoModels;
 
 namespace KB.Web.API.Validators
 {
-    public class UserProfileValidator : AbstractValidator<UserProfileDto>
+    public class UserProfileValidator : AbstractValidator<UserProfile>
 
     {
         /*

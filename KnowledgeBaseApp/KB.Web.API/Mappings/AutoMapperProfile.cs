@@ -13,6 +13,8 @@ using KeywordDto = KB.Web.API.DtoModels.Keyword;
 using ExcerptCardDto = KB.Web.API.DtoModels.ExcerptCard;
 using Note = KB.Domain.Models.Note;
 using NoteDto = KB.Web.API.DtoModels.Note;
+using UserProfileDtoPass = KB.Web.API.DtoModels.UserProfile;
+using UserProfileEntity = KB.Domain.Models.UserProfile;
 
 namespace KB.Web.API.Mappings
 {
@@ -20,8 +22,11 @@ namespace KB.Web.API.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<UserProfile, UserProfileDto>();
-            CreateMap<UserProfileDto, UserProfile>();
+            CreateMap<UserProfileEntity, UserProfileDtoPass>();
+            CreateMap<UserProfileDtoPass, UserProfileEntity>();
+
+            CreateMap<UserProfileEntity, UserProfileDto>();
+            CreateMap<UserProfileDto, UserProfileEntity>();
 
             CreateMap<SourceMaterial, SourceMaterialDto>();
             CreateMap<SourceMaterialDto, SourceMaterial>();
@@ -37,6 +42,11 @@ namespace KB.Web.API.Mappings
 
             CreateMap<Note, NoteDto>();
             CreateMap<NoteDto, Note>();
+
+            // mapping for userCredentials
+
+            CreateMap<UserProfileEntity, UserLoginCredentials>();
+            CreateMap<UserLoginCredentials, UserProfileEntity>();
         }
     }
 }
