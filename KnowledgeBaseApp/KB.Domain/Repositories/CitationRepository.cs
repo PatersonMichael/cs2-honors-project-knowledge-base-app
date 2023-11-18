@@ -34,6 +34,17 @@ namespace KB.Domain.Repositories
                 .Include(x => x.sourceMaterial)
                 .ToListAsync();
         }
+        
+        public async Task<IEnumerable<Citation>> GetUserCitationsAsync(int userProfileId)
+        {
+            _logger.LogInformation("Begin GetCitationsAsync from CitationRepository");
+
+            return await _context.Citations
+                .Where(x => x.UserProfileId == userProfileId)
+                .AsNoTracking()
+                .Include(x => x.sourceMaterial)
+                .ToListAsync();
+        }
 
         public async Task<Citation> GetCitationAsync(int id)
         {
@@ -51,6 +62,26 @@ namespace KB.Domain.Repositories
             catch (InvalidOperationException)
             {
                 throw new NotFoundException($"User with id: {id} was not found.");
+            }
+        }
+        
+        public async Task<Citation> GetUserCitationAsync(int citationId, int userProfileId)
+        {
+            _logger.LogInformation("Begin GetCitationAsync from CitationRepository");
+
+            try
+            {
+                var citation = await _context.Citations
+                    .Where(x => x.UserProfileId == userProfileId)
+                    .AsNoTracking()
+                    .Include(x => x.sourceMaterial)
+                    .SingleAsync(x => x.CitationId == citationId);
+
+                return citation;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NotFoundException($"Citation with id: {citationId} was not found.");
             }
         }
         // POST

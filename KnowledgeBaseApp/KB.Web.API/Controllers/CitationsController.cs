@@ -1,11 +1,14 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CitationEntity = KB.Domain.Models.Citation;
 
 namespace KB.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/Citations")]
     [Produces("application/json")]
     [ApiController]
@@ -30,7 +33,9 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetCitationsAsync");
 
-            var citationEntities = await _citationRepository.GetCitationsAsync();
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
+            var citationEntities = await _citationRepository.GetUserCitationsAsync(userId);
 
             IList<Citation> citations = new List<Citation>();
 
@@ -52,13 +57,15 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetCitationAsync");
 
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
             if (id == 0)
             {
                 return BadRequest("id is required");
             }
 
             Citation citationDto;
-            var citationEntity = await _citationRepository.GetCitationAsync(id);
+            var citationEntity = await _citationRepository.GetUserCitationAsync(id, userId);
 
             if (citationEntity != null)
             {

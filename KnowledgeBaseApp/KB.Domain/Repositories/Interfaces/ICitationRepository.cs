@@ -12,7 +12,10 @@ namespace KB.Domain.Repositories.Interfaces
         // GET
         public Task<IEnumerable<Citation>> GetCitationsAsync();
 
+        public Task<IEnumerable<Citation>> GetUserCitationsAsync(int userProfileId);
+
         public Task<Citation> GetCitationAsync(int id);
+        public Task<Citation> GetUserCitationAsync(int citationId, int userProfileId);
         // POST
 
         public Task<Citation> PostCitationAsync(Citation citation);

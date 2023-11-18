@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using KB.Web.API.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace KB.Web.API
@@ -54,7 +55,9 @@ namespace KB.Web.API
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("KnowledgeBaseAppConnection"));
             });
 
+
             builder.Services.AddRepositories();
+            //builder.Services.AddTokenPayloadContext();
 
             builder.Services.AddControllers(opts =>
                 {
@@ -104,6 +107,8 @@ namespace KB.Web.API
                 });
             });
 
+            builder.Services.AddTokenPayloadContext();
+
             var app = builder.Build();
 
 
@@ -134,11 +139,13 @@ namespace KB.Web.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseTokenPayloadContext();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
 
            
             try

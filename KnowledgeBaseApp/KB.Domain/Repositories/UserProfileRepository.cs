@@ -109,6 +109,8 @@ namespace KB.Domain.Repositories
                 return null;
             }
 
+            userProfile.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(userProfile.Password);
+
             // Set EF tracker to alter state of current entity
             _context.Entry(userProfile).State = EntityState.Modified;
 

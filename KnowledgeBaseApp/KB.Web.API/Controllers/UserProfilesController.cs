@@ -48,6 +48,7 @@ namespace KB.Web.API.Controllers
             return userProfiles;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         [ActionName(nameof(GetUserProfileAsync))]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -97,6 +98,7 @@ namespace KB.Web.API.Controllers
             return CreatedAtAction(nameof(GetUserProfileAsync), "UserProfiles", new { id = userProfile.UserProfileId }, userProfile);
         }
 
+        [Authorize]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -129,6 +131,7 @@ namespace KB.Web.API.Controllers
             return Ok(userProfile); 
         }
 
+        [Authorize]
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
