@@ -33,6 +33,16 @@ namespace KB.Domain.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+        
+        public async Task<IEnumerable<ExcerptCard>> GetUserExcerptCardsAsync(int userProfileId)
+        {
+            _logger.LogInformation("Begin GetExcerptCardsAsync from ExcerptCardRepository");
+
+            return await _context.ExcerptCards
+                .Where(x => x.UserProfileId == userProfileId)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
         public async Task<ExcerptCard> GetExcerptCardAsync(int id)
         {
@@ -52,6 +62,28 @@ namespace KB.Domain.Repositories
             catch (InvalidOperationException)
             {
                 throw new NotFoundException($"Excerpt Card with id {id} was not found");
+            }
+        }
+        
+        public async Task<ExcerptCard> GetUserExcerptCardAsync(int cardId, int userProfileId)
+        {
+            _logger.LogInformation("Begin GetExcerptCardAsync from ExcerptCardRepository");
+
+            try
+            {
+                var exCard = await _context.ExcerptCards
+                    .Where(x => x.UserProfileId == userProfileId)
+                    .AsNoTracking()
+                    .Include(x => x.Citation)
+                    .Include(x => x.Keywords)
+                    .Include(x => x.Citation.sourceMaterial)
+                    .SingleAsync(x => x.ExcerptCardId == cardId);
+
+                return exCard;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NotFoundException($"Excerpt Card with id {cardId} was not found");
             }
         }
 

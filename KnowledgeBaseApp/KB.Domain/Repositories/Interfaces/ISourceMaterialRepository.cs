@@ -11,8 +11,10 @@ namespace KB.Domain.Repositories.Interfaces
     {
         // GET
         Task<IEnumerable<SourceMaterial>> GetSourceMaterialsAsync();
+        Task<IEnumerable<SourceMaterial>> GetUserSourceMaterialsAsync(int userProfileId);
 
         Task<SourceMaterial> GetSourceMaterialAsync(int id);
+        Task<SourceMaterial> GetUserSourceMaterialAsync(int sourceId, int userProfileId);
 
         // POST
         Task<SourceMaterial> PostSourceMaterialAsync(SourceMaterial sourceMaterial);

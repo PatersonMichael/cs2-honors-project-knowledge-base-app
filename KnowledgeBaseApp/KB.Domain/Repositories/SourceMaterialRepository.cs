@@ -31,6 +31,15 @@ namespace KB.Domain.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+        
+        public async Task<IEnumerable<SourceMaterial>> GetUserSourceMaterialsAsync(int userProfileId)
+        {
+            _logger.LogInformation("Begin GetSourceMaterialsAsync from Repository");
+            return await _context.SourceMaterials
+                .Where(x => x.UserProfileId == userProfileId)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
         public async Task<SourceMaterial> GetSourceMaterialAsync(int id)
         {
@@ -47,6 +56,24 @@ namespace KB.Domain.Repositories
             catch (InvalidOperationException)
             {
                 throw new NotFoundException($"Source Material with id {id} was not found");
+            }
+        }
+        public async Task<SourceMaterial> GetUserSourceMaterialAsync(int sourceId, int userProfileId)
+        {
+            _logger.LogInformation("Begin GetSourceMaterialAsync from Repository");
+
+            try
+            {
+                var sourceMaterial = await _context.SourceMaterials
+                    .Where(x => x.UserProfileId == userProfileId)
+                    .AsNoTracking()
+                    .SingleAsync(x => x.SourceMaterialId == sourceId);
+
+                return sourceMaterial;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NotFoundException($"Source Material with id {sourceId} was not found");
             }
         }
 

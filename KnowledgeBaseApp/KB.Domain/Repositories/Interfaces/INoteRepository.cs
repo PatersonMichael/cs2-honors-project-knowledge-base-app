@@ -11,8 +11,10 @@ namespace KB.Domain.Repositories.Interfaces
     {
         // GET
         public Task<IEnumerable<Note>> GetNotesAsync();
+        public Task<IEnumerable<Note>> GetUserNotesAsync(int userProfileId);
 
         public Task<Note> GetNoteAsync(int id);
+        public Task<Note> GetUserNoteAsync(int noteId, int userProfileId);
 
         // POST
         public Task<Note> PostNoteAsync(Note note);

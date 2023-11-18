@@ -32,6 +32,16 @@ namespace KB.Domain.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+        
+        public async Task<IEnumerable<Note>> GetUserNotesAsync(int userProfileId)
+        {
+            _logger.LogInformation("Begin GetNotesAsync from NoteRepository");
+
+            return await _context.Notes
+                .Where(x => x.UserProfileId == userProfileId)
+                .AsNoTracking()
+                .ToListAsync();
+        }
 
         public async Task<Note> GetNoteAsync(int id)
         {
@@ -49,6 +59,31 @@ namespace KB.Domain.Repositories
                     .AsNoTracking()
                     .Include(x => x.Keywords)
                     .SingleAsync(x => x.NoteId == id);
+                return note;
+
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NotFoundException("Note not found");
+            }
+        }
+        public async Task<Note> GetUserNoteAsync(int noteId, int userProfileId)
+        {
+            _logger.LogInformation("Begin GetNoteAsync from NoteRepository");
+
+            if (noteId == 0)
+            {
+                throw new BadRequestException("id is needed");
+            }
+
+
+            try
+            {
+                var note = await _context.Notes
+                    .Where(x => x.UserProfileId == userProfileId)
+                    .AsNoTracking()
+                    .Include(x => x.Keywords)
+                    .SingleAsync(x => x.NoteId == noteId);
                 return note;
 
             }

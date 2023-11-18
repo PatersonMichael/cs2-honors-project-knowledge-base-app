@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NoteEntity = KB.Domain.Models.Note;
 
 namespace KB.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/Notes")]
     [Produces("application/json")]
     [ApiController]
@@ -30,8 +32,10 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetNotesAsync");
 
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
             IList<Note> notes = new List<Note>();
-            var noteEntities = await _NoteRepository.GetNotesAsync();
+            var noteEntities = await _NoteRepository.GetUserNotesAsync(userId);
 
             if (noteEntities != null)
             {
@@ -57,8 +61,10 @@ namespace KB.Web.API.Controllers
                 return BadRequest("id is needed");
             }
 
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
             Note note;
-            var noteEntity = await _NoteRepository.GetNoteAsync(id);
+            var noteEntity = await _NoteRepository.GetUserNoteAsync(id, userId);
 
             if (noteEntity != null)
             {

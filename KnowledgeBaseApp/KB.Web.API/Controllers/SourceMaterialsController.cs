@@ -2,6 +2,7 @@
 using AutoMapper.Configuration.Conventions;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage;
 using Serilog;
@@ -10,6 +11,7 @@ using SourceMaterialEntity = KB.Domain.Models.SourceMaterial;
 
 namespace KB.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/SourceMaterials")]
     [Produces("application/json")]
     [ApiController]
@@ -38,6 +40,9 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetSourceMaterialsAsync");
 
+            //int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
+
             var sourceMaterialEntities = await _sourceMaterialRepository.GetSourceMaterialsAsync();
 
             IList<SourceMaterialDto> sourceMaterials = new List<SourceMaterialDto>();
@@ -58,6 +63,10 @@ namespace KB.Web.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> GetSourceMaterialAsync([FromRoute] int id)
         {
+            _logger.LogInformation("Begin GetSourceMaterialAsync");
+
+            //int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
             if (id == 0)
             {
                 return BadRequest("must include valid id");

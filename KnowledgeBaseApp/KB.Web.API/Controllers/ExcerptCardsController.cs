@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using KB.Domain.Repositories.Interfaces;
 using KB.Web.API.DtoModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ExcerptCardEntity = KB.Domain.Models.ExcerptCard;
 
 namespace KB.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/ExcerptCards")]
     [Produces("application/json")]
     [ApiController]
@@ -30,7 +32,10 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetExcerptCardsAsync");
 
-            var excerptCardEntities = await _excerptCardRepository.GetExcerptCardsAsync();
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
+
+            var excerptCardEntities = await _excerptCardRepository.GetUserExcerptCardsAsync(userId);
 
             IList<ExcerptCard> excerptCards = new List<ExcerptCard>();
 
@@ -49,6 +54,9 @@ namespace KB.Web.API.Controllers
         {
             _logger.LogInformation("Begin GetExcerptCardAsync");
 
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
+
             if (id == 0)
             {
                 return BadRequest("id is needed");
@@ -56,7 +64,7 @@ namespace KB.Web.API.Controllers
 
             ExcerptCard excerptCard;
 
-            var excerptCardEntity = await _excerptCardRepository.GetExcerptCardAsync(id);
+            var excerptCardEntity = await _excerptCardRepository.GetUserExcerptCardAsync(id, userId);
 
             if (excerptCardEntity != null)
             {
