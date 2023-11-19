@@ -1,5 +1,5 @@
 .hero {
-    margin: 4rem 8rem 2rem 8rem;
+    margin: 5rem 10rem 2rem 10rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,7 +37,7 @@
 }
 
 .demo article {
-    width: 300px;
+    width: 280px;
     margin-right: 2rem;
 }
 
@@ -56,7 +56,7 @@
     border-radius: 12px;
     background-color: var(--background-color);
     margin-top: 3rem;
-    height: 300px;
+    height: 240px;
 }
 
 .demo-heading {
