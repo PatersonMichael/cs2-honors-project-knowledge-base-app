@@ -1,5 +1,6 @@
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .home-nav-bar {
@@ -28,4 +29,26 @@ a {
 
 .route-buttons {
     margin-right: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .home-nav-bar {
+        position: relative;
+        z-index: 2;
+        background-color: var(--background-color);
+    }
+
+    .nav-button {
+        margin-left: 0;
+        font-size: 16px;
+    }
+
+    .route-buttons {
+        margin-right: 0;
+    }
+
+    .logo {
+        font-size: 20px;
+        margin-left: 1rem;
+    }
 }

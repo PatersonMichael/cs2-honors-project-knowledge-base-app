@@ -109,3 +109,52 @@
     font-weight: 600;
 }
 
+@media screen and (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        margin: 2rem 0 0 0;
+        padding: 0 0;
+    }
+
+    .hero-text {
+        z-index: 1;
+        margin: 1rem 1rem 1rem 1rem;
+    }
+
+    .demo-heading {
+        color: #EEE;
+    }
+
+    .hero-image {
+        position: absolute;
+        z-index: 0;
+        opacity: 25%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .hero {
+        flex-direction: column;
+        margin: 2rem 0 0 0;
+        padding: 0 0;
+    }
+
+    .hero-text {
+        z-index: 1;
+        margin: 1rem 1rem 1rem 1rem;
+    }
+
+    .demo-heading {
+        color: #EEE;
+    }
+
+    .demo-author {
+        margin-top: 4rem;
+    }
+
+    .hero-image {
+        position: absolute;
+        z-index: 0;
+        opacity: 25%;
+    }
+}

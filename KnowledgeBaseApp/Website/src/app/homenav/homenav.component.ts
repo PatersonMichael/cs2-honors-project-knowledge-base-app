@@ -15,8 +15,11 @@ import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
         <a [routerLink]="['/about']" class="nav-button">About</a>
         @if (isLoggedIn) {
           <a [routerLink]="['/create']" class="nav-button">Create</a>
+          <a (click)="logout()" class="nav-button">Log Out</a>
         }
-        <a [routerLink]="['/login']" class="nav-button">Log In</a>
+        @else {
+          <a [routerLink]="['/login']" class="nav-button">Log In</a>
+        }
       </div>
     </section>
   `,
@@ -24,4 +27,8 @@ import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class HomenavComponent {
   isLoggedIn: boolean = true;
+
+  logout() {
+    this.isLoggedIn = false;
+  }
 }

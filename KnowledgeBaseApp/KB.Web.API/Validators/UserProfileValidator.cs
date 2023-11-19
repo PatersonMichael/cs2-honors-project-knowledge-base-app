@@ -13,7 +13,7 @@ namespace KB.Web.API.Validators
          * Min: 19 characters
          * Max: 256 characters
          */
-        private readonly Regex _strongPasswordRegex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{19,256}$");
+        private readonly Regex _strongPasswordRegex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,256}$");
 
         public UserProfileValidator()
         {
