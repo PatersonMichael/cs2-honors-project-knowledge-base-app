@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    background-color: var(--background-color);
+}
+
+:root {
+    --background-color: #161616;
+    --primary-color: #262626;
+    --secondary-color: #A0A0A0;
+    --accent-color: #73408D;
+
+}

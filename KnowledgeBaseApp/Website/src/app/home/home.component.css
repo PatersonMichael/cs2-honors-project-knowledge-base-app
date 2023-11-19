@@ -1,0 +1,108 @@
+.hero {
+    margin: 4rem 8rem 2rem 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hero-header {
+    color: #EEE;
+    font-weight: 600;
+    font-size: 60px;
+}
+
+.hero-subheader {
+    width: 400px;
+
+    color: #BABABA;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 2.5rem;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-image img{
+    width: 480px;
+    height: 694px;
+    object-fit:cover;
+}
+
+.demo {
+    display: flex;
+    margin-top: 3rem;
+}
+
+.demo article {
+    width: 300px;
+    margin-right: 2rem;
+}
+
+.demo h2 {
+    color: #EEE;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.demo-card {
+    padding: 10px;
+    border-left: solid 10px var(--primary-color);
+    border-right: solid 10px var(--primary-color);
+    border-top: solid 15px var(--primary-color);
+    border-bottom: solid 15px var(--primary-color);
+    border-radius: 12px;
+    background-color: var(--background-color);
+    margin-top: 3rem;
+    height: 300px;
+}
+
+.demo-heading {
+    height: 60px;
+
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.demo-card-body {
+    color: #EEE;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+.demo-author {
+    color: #EEE;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 8rem;
+}
+
+.demo-card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.demo-card-title img {
+    width: 20px;
+    height: 20px;
+}
+
+.sign-up-button {
+    color: #EEE;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 6px;
+    margin-top: 2rem;
+    width: 220px;
+    height: 47px;
+    
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
