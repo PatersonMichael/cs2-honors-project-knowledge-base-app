@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomenavComponent } from '../homenav/homenav.component';
+import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HomenavComponent],
+  imports: [CommonModule, HomenavComponent, RouterLink],
   template: `
     <app-homenav></app-homenav>
     <section class="hero">
@@ -42,7 +43,8 @@ import { HomenavComponent } from '../homenav/homenav.component';
             </div>
           </article>
         </section>
-        <button class="sign-up-button">Sign Up</button>
+        <!-- <button [routerLink]="['/signup']" class="sign-up-button">Sign Up</button> -->
+        <a [routerLink]="['/signup']" class="sign-up-button">Sign Up</a>
       </div>
       <div class="hero-image">
         <img src="/assets/marcus-aurelius-portrait.png" alt="insert cool philosopher here">
