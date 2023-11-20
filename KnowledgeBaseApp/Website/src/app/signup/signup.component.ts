@@ -12,6 +12,9 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
     <section class="signup">
       <h2>Sign Up</h2>
       <form (submit)="submitSignupForm()" [formGroup]="signupForm">
+        @if (isSubmitting) {
+          <p id="is-submitting">Submitted!</p>
+        }
         <div class="input-block">
           <label for="first-name">First Name</label>
           <input type="text" id="first-name" formControlName="firstName">
@@ -28,7 +31,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
         </div>
 
         <div class="input-block">
-          <label for="password">Password <span>lowercase, uppercase, number, symbol</span></label>
+          <label for="password">Password <span>min 9 characters, lowercase, uppercase, number, symbol</span></label>
           <input type="password" id="password" formControlName="password">
         </div>
 
@@ -51,7 +54,8 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  private passRegex: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,256}$/;
+  private passRegex: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{9,256}$/;
+  isSubmitting: boolean = false;
 
   signupForm = new FormGroup({
     firstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
@@ -63,11 +67,14 @@ export class SignupComponent {
   });
 
   submitSignupForm() {
+    this.signupForm.disable();
+    this.isSubmitting = true;
     // validate form
     // if invalid, show user which data is invalid
     // if valid, send post user request through user-service
-      // if 201 response, redirect to user home
-          // else, try form submission again
+      // if 201 response, login with new user credentials (email/pass) and redirect to user home
+          // else, try form submission again, indicate problems with validation
+            // isSubmitting = false;
 
     console.log(
       `Form submitted: 
@@ -75,6 +82,7 @@ export class SignupComponent {
       \n lastName: ${this.signupForm.value.lastName}
       \n email: ${this.signupForm.value.email}
       \n password: ${this.signupForm.value.password}
+      \n nametag: ${this.signupForm.value.nametag}
       \n birthDate: ${this.signupForm.value.birthDate}`
     )
   }

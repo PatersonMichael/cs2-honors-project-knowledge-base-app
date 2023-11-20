@@ -12,7 +12,7 @@
 }
 
 .hero-subheader {
-    width: 400px;
+    width: 60%;
 
     color: #BABABA;
     font-size: 20px;
@@ -137,11 +137,16 @@
         flex-direction: column;
         margin: 2rem 0 0 0;
         padding: 0 0;
+        width: 100%;
     }
 
     .hero-text {
         z-index: 1;
         margin: 1rem 1rem 1rem 1rem;
+    }
+
+    .demo {
+        width: 100%;
     }
 
     .demo-heading {
@@ -156,5 +161,9 @@
         position: absolute;
         z-index: 0;
         opacity: 25%;
+        width: 100%;
+        object-fit:cover;
+        padding: 0;
+        margin: 0;
     }
 }

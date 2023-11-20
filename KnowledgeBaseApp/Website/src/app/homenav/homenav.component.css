@@ -52,3 +52,16 @@ a {
         margin-left: 1rem;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .logo {
+        font-size: 16px;
+    }
+    .nav-button {
+        font-size: 14px;
+    }
+
+    .home-nav-bar {
+        width: 100%;
+    }
+}
