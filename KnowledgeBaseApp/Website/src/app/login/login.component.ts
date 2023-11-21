@@ -29,7 +29,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
           <input type="password" id="password" formControlName="password">
         </div>
 
-        <div id="submit-block">
+        <div class="input-block" id="submit-block">
           <button class="submit-button" [disabled]="!loginForm.valid">Log In</button>
         </div>
       </form>
