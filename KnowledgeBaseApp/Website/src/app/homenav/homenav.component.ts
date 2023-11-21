@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
 
@@ -17,8 +17,12 @@ import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
           <a [routerLink]="['/create']" class="nav-button">Create</a>
           <a (click)="logout()" class="nav-button">Log Out</a>
         }
+        @else if (isOnLoginPage && !isLoggedIn) {
+          <a [routerLink]="['/signup']" class="nav-button">Sign Up</a>
+        }
         @else {
           <a [routerLink]="['/login']" class="nav-button">Log In</a>
+
         }
       </div>
     </section>
@@ -26,7 +30,9 @@ import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './homenav.component.css'
 })
 export class HomenavComponent {
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
+
+  @Input() isOnLoginPage = false;
 
   logout() {
     this.isLoggedIn = false;

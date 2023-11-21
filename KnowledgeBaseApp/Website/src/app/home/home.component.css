@@ -115,12 +115,12 @@
         margin: 2rem 0 0 0;
         padding: 0 0;
     }
-
+    
     .hero-text {
         z-index: 1;
         margin: 1rem 1rem 1rem 1rem;
     }
-
+    
     .demo-heading {
         color: #EEE;
     }
@@ -138,11 +138,13 @@
         margin: 2rem 0 0 0;
         padding: 0 0;
         width: 100%;
+        justify-content:center;
     }
 
     .hero-text {
         z-index: 1;
         margin: 1rem 1rem 1rem 1rem;
+        /* width: 50%; */
     }
 
     .demo {
@@ -165,5 +167,6 @@
         object-fit:cover;
         padding: 0;
         margin: 0;
+        overflow: hidden;
     }
 }
