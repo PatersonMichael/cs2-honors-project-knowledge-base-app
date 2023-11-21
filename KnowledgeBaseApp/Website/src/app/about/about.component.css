@@ -1,0 +1,22 @@
+
+
+h1 {
+    color: #EEE;
+    font-size: 40px;
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+
+p {
+    color: var(--secondary-color);
+    margin-top: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: #EEE;
+    font-weight: 600;
+}

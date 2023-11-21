@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
     {
@@ -19,4 +20,9 @@ export const routes: Routes = [
         component: LoginComponent,
         title: 'Knowledge Base - Log In'
     },
+    {
+        path: 'about',
+        component: AboutComponent,
+        title: 'Knowledge Base - About'
+    }
 ];
