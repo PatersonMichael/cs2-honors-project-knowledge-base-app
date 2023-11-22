@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomenavComponent } from '../homenav/homenav.component';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { IUserLoginCredentials } from '../models/IUserProfile';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +40,8 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  userProfileService = inject(UserService);
+
   loginForm = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', Validators.required),
@@ -49,6 +53,15 @@ export class LoginComponent {
   submitLoginForm() {
     this.loginForm.disable();
     this.isSubmitting = true;
+
+    let userCreds: IUserLoginCredentials = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    }
+
+    let response = this.userProfileService.loginUserProfileAsync(userCreds);
+    console.log(response);
+
     console.log(
       `login form submitted:
       \n email: ${this.loginForm.value.email}

@@ -25,7 +25,7 @@ namespace KB.Web.API.Validators
             RuleFor(up => up.Nametag).NotEmpty().MaximumLength(60);
             RuleFor(up => up.Password).NotEmpty()
                 .Matches(_strongPasswordRegex)
-                .MinimumLength(19)
+                .MinimumLength(9)
                 .MaximumLength(256);
         }
     }

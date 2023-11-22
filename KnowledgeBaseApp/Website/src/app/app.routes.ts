@@ -26,3 +26,5 @@ export const routes: Routes = [
         title: 'Knowledge Base - About'
     }
 ];
+
+export default routes;

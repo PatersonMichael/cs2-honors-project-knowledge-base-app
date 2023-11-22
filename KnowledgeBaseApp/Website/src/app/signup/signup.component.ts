@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomenavComponent } from '../homenav/homenav.component';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { IUserProfile } from '../models/IUserProfile';
 
 @Component({
   selector: 'app-signup',
@@ -54,6 +56,8 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
+  userProfileService = inject(UserService);
+
   private passRegex: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{9,256}$/;
   isSubmitting: boolean = false;
 
@@ -69,9 +73,18 @@ export class SignupComponent {
   submitSignupForm() {
     this.signupForm.disable();
     this.isSubmitting = true;
+    let userProfile: IUserProfile = {
+      firstName: this.signupForm.value.firstName,
+      lastName: this.signupForm.value.lastName,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      nametag: this.signupForm.value.nametag,
+      birthDate: this.signupForm.value.birthDate,
+      creationDate: new Date(),
+    }
     // validate form
-    // if invalid, show user which data is invalid
     // if valid, send post user request through user-service
+    const response = this.userProfileService.postUserProfileAsync(userProfile);
       // if 201 response, login with new user credentials (email/pass) and redirect to user home
           // else, try form submission again, indicate problems with validation
             // isSubmitting = false;
@@ -83,7 +96,11 @@ export class SignupComponent {
       \n email: ${this.signupForm.value.email}
       \n password: ${this.signupForm.value.password}
       \n nametag: ${this.signupForm.value.nametag}
-      \n birthDate: ${this.signupForm.value.birthDate}`
+      \n birthDate: ${this.signupForm.value.birthDate}
+      \n\n API response:
+      \n ${response}
+      `
     )
+    console.log(response);
   }
 }
