@@ -3,6 +3,8 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { authGuard } from './services/authorize-guard.service';
 
 export const routes: Routes = [
     {
@@ -24,6 +26,12 @@ export const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         title: 'Knowledge Base - About'
+    },
+    {
+        path: 'user',
+        component: UserHomeComponent,
+        title: 'Knowledge Base - User Home',
+        canActivate: [authGuard]
     }
 ];
 

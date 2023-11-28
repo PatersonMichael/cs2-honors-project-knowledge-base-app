@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomenavComponent } from '../homenav/homenav.component';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { IUserProfile } from '../models/IUserProfile';
+import { IUserLoginCredentials, IUserProfile } from '../models/IUserProfile';
 
 @Component({
   selector: 'app-signup',
@@ -84,7 +84,16 @@ export class SignupComponent {
     }
     // validate form
     // if valid, send post user request through user-service
-    const response = this.userProfileService.postUserProfileAsync(userProfile);
+    const response = this.userProfileService.postUserProfileAsync(userProfile).then(result => {
+        console.log(result);
+        if (result['userProfileId'] > 0) {
+          let userLoginCredentials: IUserLoginCredentials = {
+            email: this.signupForm.value.email,
+            password: this.signupForm.value.password
+          }
+          this.userProfileService.loginUserProfileAsync(userLoginCredentials);
+        }
+    });
       // if 201 response, login with new user credentials (email/pass) and redirect to user home
           // else, try form submission again, indicate problems with validation
             // isSubmitting = false;
@@ -101,6 +110,6 @@ export class SignupComponent {
       \n ${response}
       `
     )
-    console.log(response);
+    // console.log(response);
   }
 }

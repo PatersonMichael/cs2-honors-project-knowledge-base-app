@@ -60,7 +60,9 @@ export class LoginComponent {
     }
 
     let response = this.userProfileService.loginUserProfileAsync(userCreds);
-    console.log(response);
+    // response.then(result => 
+    //     console.log(result.value)
+    //   );
 
     console.log(
       `login form submitted:
