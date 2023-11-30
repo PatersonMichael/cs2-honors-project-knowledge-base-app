@@ -89,10 +89,48 @@ button[disabled]{
     padding: 0.5rem;
     border-radius: 6px;
     text-align: center;
-    width: 8rem;
+    width: 10rem;
     position: absolute;
     font-size: 16px;
     background-color: rgba(228, 30, 30, 0.1);
+}
+.login-success {
+    color: #eee;
+    margin: auto;
+    margin-top: 30%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    text-align: center;
+    width: 20rem;
+    font-size: 24px;
+}
+.login-success::after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+}
+@keyframes dots {
+    0%, 20% {
+        color: rgba(0,0,0,0);
+        text-shadow: 
+            .25em 0 0 rgba(0, 0, 0, 0),
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    40% {
+        color: #EEE;
+        text-shadow: 
+            .25em 0 0 rgba(0,0,0,0),
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    60% {
+        text-shadow:
+            .25em 0 0 #EEE,
+            .5em 0 0 rgba(0,0,0,0);
+    }
+    80%, 100% {
+        text-shadow: 
+            .25em 0 0 #EEE,
+            .5em 0 0 #EEE;
+    }
 }
 
 @media screen and (max-width: 500px) {

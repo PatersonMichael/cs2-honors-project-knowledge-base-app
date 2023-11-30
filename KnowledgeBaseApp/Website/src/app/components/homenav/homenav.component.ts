@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
-import { AppCookieService } from '../services/app-cookie.service';
+import { AppCookieService } from '../../services/app-cookie.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { AppCookieService } from '../services/app-cookie.service';
       <div class="route-buttons">
         <a [routerLink]="['/about']" class="nav-button">About</a>
         @if (isLoggedIn) {
-          <a [routerLink]="['/create']" class="nav-button">Create</a>
+          <a [routerLink]="['/user']" class="nav-button">Create</a>
           <a (click)="logout()" class="nav-button">Log Out</a>
         }
         @else if (isOnLoginPage && !isLoggedIn) {

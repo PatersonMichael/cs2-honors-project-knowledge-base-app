@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomenavComponent } from '../homenav/homenav.component';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { IUserLoginCredentials, IUserProfile } from '../models/IUserProfile';
+import { UserService } from '../../services/user.service';
+import { IUserLoginCredentials, IUserProfile } from '../../models/IUserProfile';
 
 @Component({
   selector: 'app-signup',

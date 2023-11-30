@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-user-home',
+  selector: 'app-excerpts',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './user-home.component.html',
-  styleUrl: './user-home.component.css'
+  templateUrl: './excerpts.component.html',
+  styleUrl: './excerpts.component.css'
 })
-export class UserHomeComponent {
+export class ExcerptsComponent {
 
 }

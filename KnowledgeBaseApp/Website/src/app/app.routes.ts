@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { AboutComponent } from './about/about.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+import { HomeComponent } from './components/home/home.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { AboutComponent } from './components/about/about.component';
+import { UserHomeComponent } from './components/user-home/user-home.component';
 import { authGuard } from './services/authorize-guard.service';
+import { NotesComponent } from './components/notes/notes.component';
+import { ExcerptsComponent } from './components/excerpts/excerpts.component';
 
 export const routes: Routes = [
     {
@@ -31,7 +33,22 @@ export const routes: Routes = [
         path: 'user',
         component: UserHomeComponent,
         title: 'Knowledge Base - User Home',
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        children: [
+            {
+                path:'notes',
+                component: NotesComponent,
+                title: 'Knowledge Base - Notes',
+                canActivate: [authGuard]
+            },
+            {
+                path: 'excerpts',
+                component: ExcerptsComponent,
+                title: 'Knowledge Base - Excerpts',
+                canActivate: [authGuard]
+            }
+
+        ],
     }
 ];
 

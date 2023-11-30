@@ -54,8 +54,8 @@ export class UserService {
     const responseJson = response.json();
 
     responseJson.then(result => {
-      console.log("try storing as key");
       if(result['statusCode'] == 200) {
+        console.log("try storing as key");
         // this.localStorageService.set("Authorization", `Bearer ${result.value}`)
         // console.log(this.localStorageService.get("Authorization"));
 
