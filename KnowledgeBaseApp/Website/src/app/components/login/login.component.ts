@@ -22,6 +22,9 @@ import { IUserLoginCredentials } from '../../models/IUserProfile';
               <p id="invalid-credentials">Invalid Credentials</p>
     
             }
+          @if (errorOccured) {
+            <p id="invalid-credentials">An error occurred, try again later.</p>
+          }
           <div class="input-block">
             <label for="email">Email</label>
             <input type="email" id="email" formControlName="email">
@@ -57,6 +60,7 @@ export class LoginComponent {
   isSubmitting: boolean = false;
   invalidCredentials: boolean = false;
   loginSuccess: boolean = false;
+  errorOccured: boolean = false;
 
   submitLoginForm() {
     this.loginForm.disable();
@@ -66,24 +70,23 @@ export class LoginComponent {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     }
-
-    let response = this.userProfileService.loginUserProfileAsync(userCreds);
-    response.then(result => {
-      if (result['statusCode'] == 200) {
-        this.loginSuccess = true;
-      }
-      else {
-        this.loginSuccess = false;
-        this.invalidCredentials = true;
-      }
-    })
-
-    console.log(
-      `login form submitted:
-      \n email: ${this.loginForm.value.email}
-      \n password: ${this.loginForm.value.password}
-      `
-    )
+try {
+  let response = this.userProfileService.loginUserProfileAsync(userCreds);
+  response.then(result => {
+    if (result['statusCode'] == 200) {
+      this.loginSuccess = true;
+    }
+    else {
+      this.loginSuccess = false;
+      this.invalidCredentials = true;
+    }
+  });
+  
+} catch (error) {
+  // console.log(error);
+  this.errorOccured = true;
+  
+}
 
     if (this.loginForm.valid) {
       this.loginForm.disable();

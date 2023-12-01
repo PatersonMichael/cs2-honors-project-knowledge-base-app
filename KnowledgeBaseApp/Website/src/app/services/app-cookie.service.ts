@@ -36,14 +36,18 @@ export class AppCookieService {
     return !!this.cookieStore[key] ? this.cookieStore[key] : null;
   }
 
-  remove(key: string ) {
+  remove(key: string, path?: string ) {
     document.cookie = `${key} = ; expires=Thu, 1 jan 1990 12:00:00 UTC; path=/`;
+    document.cookie = `${key} = ; expires=Thu, 1 jan 1990 12:00:00 UTC; path=/user}`;
+    document.cookie = `${key} = ; expires=Thu, 1 jan 1990 12:00:00 UTC; path=${path}}`;
+
+    // document.cookie = `${key} = ;`;
   }
 
   set(key:string, value: string) {
     let date = new Date();
     console.log(TimeUtilities.addHours(date, 1).toUTCString());
-    document.cookie = key + '=' + (value || '') + ";" + "expires=" + TimeUtilities.addHours(date, 2).toUTCString();
+    document.cookie = key + '=' + (value || '') + ";" + "expires=" + TimeUtilities.addHours(date, 2).toUTCString() + ";path='/'";
     // document.cookie = `${key}=${value || ''}; expires=${TimeUtilities.addHours(date, 1).toUTCString()}; httpOnly=true; `;
   }
 }

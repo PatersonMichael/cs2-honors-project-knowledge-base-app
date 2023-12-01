@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
 import { AppCookieService } from '../../services/app-cookie.service';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -34,6 +35,8 @@ import { AppCookieService } from '../../services/app-cookie.service';
 export class HomenavComponent {
   isLoggedIn: boolean = false;
   appCookieService = inject(AppCookieService);
+  userService = inject(UserService);
+
   constructor() {
     if (this.appCookieService.get("Authorization")) {
       this.isLoggedIn = true;
@@ -44,7 +47,7 @@ export class HomenavComponent {
   @Input() isOnLoginPage = false;
 
   logout() {
-    this.appCookieService.remove("Authorization");
+    this.userService.logout();
     this.isLoggedIn = false;
   }
 }

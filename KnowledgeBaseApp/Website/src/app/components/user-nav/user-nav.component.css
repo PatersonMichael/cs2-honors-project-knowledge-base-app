@@ -39,3 +39,7 @@ li {
         width: 16rem;
     }
 }
+
+a{
+    cursor: pointer;
+}
