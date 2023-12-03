@@ -8,7 +8,7 @@
 
         public string Body { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public DateTime LastUpdateDate { get; set; }
 

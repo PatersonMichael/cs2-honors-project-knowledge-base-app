@@ -11,12 +11,11 @@ h1 {
 }
 
 .notes {
-    color: red;
+    /* color: red; */
     /* background-color: var(--accent-color); */
     /* width: 100%; */
     /* height: 100%; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
     justify-content: space-around;
     padding: 0;
     margin: 1rem;

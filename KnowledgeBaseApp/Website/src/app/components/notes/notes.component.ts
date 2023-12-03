@@ -12,8 +12,6 @@ import { LocalStorageService } from '../../services/local-storage.service';
   template: `
       <div class="notes-component">
         <section class="notes">
-          <h1>Notes</h1>
-          <p>Hello</p>
           <div class="note-card">
             <article class="note-card-body">
               <div class="note-card-heading">
@@ -54,4 +52,6 @@ export class NotesComponent {
     //     this.isLoaded = true},
     // })
   }
+
+  
 }

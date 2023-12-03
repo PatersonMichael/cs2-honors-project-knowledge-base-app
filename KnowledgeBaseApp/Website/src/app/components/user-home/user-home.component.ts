@@ -20,7 +20,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   
     </section>
 
-  } @loading (minimum 1s) {
+  } @loading () {
     <h3>loading content . . .</h3>
   }
 
