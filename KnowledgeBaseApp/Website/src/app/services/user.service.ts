@@ -18,7 +18,24 @@ export class UserService {
   private cookieService = inject(AppCookieService);
   private router = inject(Router);
   // GET
-  // getUserProfileAsync()
+
+  async getUserProfileAsync() {
+    // -1 makes API search for UserProfileId in auth token
+   const response = await fetch(`${this.apiUrl}/api/UserProfiles/-1`, {
+     method: "GET",
+     mode: "cors",
+     cache: "no-cache",
+     headers: {
+       "Conent-Type": "application/json",
+       "Authorization": this.cookieService.get("Authorization"),
+     },
+     redirect: "follow",
+     referrerPolicy: "no-referrer",
+   });
+
+   return response.json();
+
+  }
 
   // POST
   async postUserProfileAsync(userProfile: IUserProfile) {
@@ -63,9 +80,13 @@ export class UserService {
           this.cookieService.set("Authorization", `Bearer ${result.value}`);
           // console.log(this.cookieService.get("Authorization"));
           this.router.navigate(['/user']);
+          this.getUserProfileAsync().then(result => {
+            this.localStorageService.add<IUserProfile>("userDetails", result);
+          })
         }
       });
       
+
       return responseJson;
       
     } catch (error) {
@@ -75,9 +96,11 @@ export class UserService {
     // if statuscode is 200, store jwt
   }
 
-  // takes path to authoization cookie and deletes it. 
+  // takes path to authorzation cookie and deletes it. 
   public logout(path?: string) {
     this.cookieService.remove("Authorization", path);
+    this.localStorageService.remove("Authorization");
+    this.localStorageService.remove("userDetails");
     if (this.cookieService.get("Authorization")) {
       console.log("cookie found");
       

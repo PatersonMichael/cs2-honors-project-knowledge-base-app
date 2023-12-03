@@ -57,11 +57,19 @@ namespace KB.Web.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> GetUserProfileAsync([FromRoute]int id)
         {
+            // add ability to get id from token if used instead of route
+            int userId = int.Parse(HttpContext.Items["userProfileId"].ToString());
+
             _logger.LogInformation("Begin GetUserProfileAsync");
 
             if (id == 0)
             {
                 return BadRequest("id is required");
+            }
+
+            if (id == -1)
+            {
+                id = userId;
             }
 
             UserProfileDto userProfileDto;

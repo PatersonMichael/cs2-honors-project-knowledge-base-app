@@ -46,7 +46,7 @@ export class AppCookieService {
 
   set(key:string, value: string) {
     let date = new Date();
-    console.log(TimeUtilities.addHours(date, 1).toUTCString());
+    // console.log(TimeUtilities.addHours(date, 1).toUTCString());
     document.cookie = key + '=' + (value || '') + ";" + "expires=" + TimeUtilities.addHours(date, 2).toUTCString() + ";path='/'";
     // document.cookie = `${key}=${value || ''}; expires=${TimeUtilities.addHours(date, 1).toUTCString()}; httpOnly=true; `;
   }

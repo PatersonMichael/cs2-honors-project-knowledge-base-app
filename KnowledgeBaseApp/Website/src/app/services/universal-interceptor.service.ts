@@ -15,6 +15,9 @@ export class UniversalInterceptorService implements HttpInterceptor {
         Authorization: token,
       }
     });
+
+    console.log(req);
+    
     return next.handle(req);
   }
 
