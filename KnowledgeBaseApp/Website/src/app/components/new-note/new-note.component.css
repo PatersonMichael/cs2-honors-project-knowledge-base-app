@@ -1,0 +1,126 @@
+#note {
+    color: #EEE;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    width: 44.4rem;
+    /* height: 51.4rem; */
+    margin: auto;
+    margin-top: 2rem;
+}
+
+header {
+    height: 3.45rem;
+}
+
+header input {
+    height: 3.45rem;
+    width: 20.2rem;
+    border-radius: 6px 0;
+    border: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: left;
+    padding-left: 2rem;
+    color: #000;
+}
+
+#body-input-area {
+    margin: 1rem;
+    display: flex;
+    /* justify-content: flex-start; */
+}
+
+#body-input-area textarea{
+    margin-top: 1rem;
+    width: 42.7rem;
+    height: 35rem;
+    vertical-align: text-top;
+    text-align: left;
+    border-radius: 6px;
+    border: none;
+    padding: 1rem;
+}
+
+#body-input-area textarea:placeholder-shown {
+    text-align: center;
+    justify-content: center;
+}
+
+#body-input-area textarea::placeholder {
+    color: var(--accent-color);
+    font-family: 'Fira Sans', sans-serif;
+}
+
+#submit-button {
+    width: 8.43rem;
+    height: 2rem;
+    background-color: var(--accent-color);
+    color: #EEE;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+
+}
+
+#bottom {
+    display: flex;
+    justify-content: end;
+    /* align-items: end; */
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+#keyword-area {
+    margin-left: 1rem;
+}
+
+#keyword-area label {
+    margin-right: 1rem;
+    font-size: 16px;
+}
+
+#keyword-area input {
+    margin-right: 1rem;
+}
+
+#keyword-area button {
+    width: 6.4rem;
+    height: 1.75rem;
+    background-color: var(--accent-color);
+    color: #EEE;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+
+}
+
+#keyword-area ul {
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#keyword-area li {
+    text-decoration: none;
+    display: inline;
+    background-color: var(--secondary-color);
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+    color: #000;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+#keyword-area li:hover {
+    text-decoration: line-through;
+}
+
+#delete-help {
+    font-size: 13px;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+

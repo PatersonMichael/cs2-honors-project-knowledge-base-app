@@ -1,0 +1,35 @@
+h1 {
+    color: var(--secondary-color);
+    font-size: 26px;
+    text-align: center;
+    margin-top: 8rem;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.option {
+    background-color: var(--primary-color);
+    color: #EEE;
+    width: 12rem;
+    height: 12rem;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 6px;
+    margin: 0.5rem;
+
+    cursor: pointer;
+}
+
+.option:hover {
+    transition: .75s;
+    width: 13rem;
+    height: 13rem;
+    background-color: var(--accent-color);
+}

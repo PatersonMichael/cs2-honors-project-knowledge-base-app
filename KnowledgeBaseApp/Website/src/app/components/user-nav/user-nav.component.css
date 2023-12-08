@@ -43,3 +43,12 @@ li {
 a{
     cursor: pointer;
 }
+
+li a:hover {
+    text-decoration: underline;
+    font-size: 1.5rem;
+}
+
+#accent {
+    color: var(--accent-color);
+}

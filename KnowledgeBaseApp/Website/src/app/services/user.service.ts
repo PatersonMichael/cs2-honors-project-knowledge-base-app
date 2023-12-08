@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { IUserProfile, IUserLoginCredentials } from '../models/IUserProfile';
 import { environment } from '../../environments/environment.development';
-import { FormGroup } from '@angular/forms';
 import { LocalStorageService } from './local-storage.service';
 import { AppCookieService } from './app-cookie.service';
 import { Router } from '@angular/router';
@@ -26,7 +25,7 @@ export class UserService {
      mode: "cors",
      cache: "no-cache",
      headers: {
-       "Conent-Type": "application/json",
+       "Content-Type": "application/json",
        "Authorization": this.cookieService.get("Authorization"),
      },
      redirect: "follow",

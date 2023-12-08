@@ -17,8 +17,9 @@ import { RouterLink, RouterModule } from '@angular/router';
       </a>
       </div>
       <p class="note-text">
-        {{noteCard.body.slice(0, 100)}}
-        @if(noteCard.body.length > 100) {
+        {{noteCard.body!.slice(0, 100)}}
+
+        @if(noteCard.body!.length > 100) {
           <span>. . .</span>
         }
       </p>

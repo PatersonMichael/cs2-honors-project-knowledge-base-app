@@ -8,6 +8,9 @@ import { authGuard } from './services/authorize-guard.service';
 import { NotesComponent } from './components/notes/notes.component';
 import { ExcerptsComponent } from './components/excerpts/excerpts.component';
 import { NoteDetailsComponent } from './components/note-details/note-details.component';
+import { CreateComponent } from './components/create/create.component';
+import { NewNoteComponent } from './components/new-note/new-note.component';
+import { NewExcerptComponent } from './components/new-excerpt/new-excerpt.component';
 
 export const routes: Routes = [
     {
@@ -41,9 +44,6 @@ export const routes: Routes = [
                 component: NotesComponent,
                 title: 'Knowledge Base - Notes',
                 canActivate: [authGuard],
-                children: [
-                    
-                ]
             },
             {
                 path: 'excerpts',
@@ -51,7 +51,26 @@ export const routes: Routes = [
                 title: 'Knowledge Base - Excerpts',
                 canActivate: [authGuard]
             },
-           
+            {
+                path: 'create',
+                component: CreateComponent,
+                title: 'Knowledge Base - Create',
+                canActivate: [authGuard],
+                children: [
+                    {
+                        path: 'note',
+                        component: NewNoteComponent,
+                        title: 'Knowledge Base - New Note',
+                        canActivate: [authGuard]
+                    },
+                    {
+                        path: 'excerpt',
+                        component: NewExcerptComponent,
+                        title: 'Knowledge Base - New Excerpt',
+                        canActivate: [authGuard]
+                    },
+                ]
+            }
 
         ],
     },

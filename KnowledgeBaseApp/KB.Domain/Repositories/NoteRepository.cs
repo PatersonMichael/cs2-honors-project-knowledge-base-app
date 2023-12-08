@@ -151,6 +151,7 @@ namespace KB.Domain.Repositories
             if (note != null)
             {
                 _context.Notes.Remove(note);
+                _context.SaveChangesAsync();
             }
             else
             {

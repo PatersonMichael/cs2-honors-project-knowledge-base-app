@@ -1,5 +1,5 @@
 export interface IKeyword {
-    keywordId: string | null | undefined,
+    keywordId: number | null | undefined,
     name: string | null | undefined,
-    userProfileId: string | null | undefined
+    userProfileId: number | null | undefined
 }
