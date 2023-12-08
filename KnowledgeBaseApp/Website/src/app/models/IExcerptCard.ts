@@ -10,5 +10,5 @@ export interface IExcerptCard {
     userProfileId: number | null | undefined,
     citation: ICitation | null | undefined,
     citationId: number | null | undefined,
-    keywords: IKeyword[] | null | undefined,
+    keywords?: IKeyword[] | null | undefined,
 }

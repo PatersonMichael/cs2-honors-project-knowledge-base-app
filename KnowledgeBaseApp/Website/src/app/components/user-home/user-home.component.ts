@@ -16,7 +16,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   <app-user-nav></app-user-nav> 
   @defer () {
     <section class="user-home-content">
-      <h2>Welcome back, <span>{{userDetails.firstName}}</span>!</h2>
+      <h2>Hi, <span>{{userDetails.firstName}}</span>!</h2>
   
     </section>
 

@@ -1,0 +1,60 @@
+#change-password {
+    margin-left: 5rem;
+    margin-top: 6rem;
+    color: #EEE;
+}
+
+#change-password button {
+    border: none;
+    width: 14rem;
+    height: 2.5rem;
+    background-color: var(--accent-color);
+    color: #EEE;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#change-password form {
+    display: flex;
+    flex-direction: column;
+}
+
+#change-password input {
+    height: 1.5rem;
+    width: 14rem;
+    /* margin-top: 1rem; */
+}
+
+label {
+    margin-top: 1rem;
+}
+
+#submit-button {
+    margin-top: 1.5rem;
+}
+
+#success {
+    color: green;
+    background-color: rgba(31, 188, 31, 0.2);
+    text-align: center;
+    padding: 0.25rem;
+    width: 7rem;
+    position: absolute;
+    top: 8rem;
+    left: 28rem;
+    z-index: 1;
+}
+
+.invalid-credentials {
+    color: red;
+    background-color: rgba(99, 8, 8, 0.2);
+    text-align: center;
+    padding: 0.25rem;
+    width: 7rem;
+    position: absolute;
+    top: 8rem;
+    left: 28rem;
+    z-index: 1;
+}

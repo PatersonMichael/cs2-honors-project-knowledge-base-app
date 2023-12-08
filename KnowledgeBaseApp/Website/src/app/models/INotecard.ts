@@ -5,7 +5,7 @@ export interface INoteCard {
     title: string | null | undefined,
     body: string | null | undefined,
     creationDate: Date | null | undefined,
-    lastUpdateDate?: Date | null | undefined,
+    lastUpdatedDate?: Date | null | undefined,
     userProfileId: number | null | undefined,
     keywords?: IKeyword[] | null | undefined,
 }

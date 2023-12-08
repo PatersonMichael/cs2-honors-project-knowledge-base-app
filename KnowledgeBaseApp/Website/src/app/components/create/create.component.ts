@@ -43,23 +43,6 @@ export class CreateComponent {
   private noteService = inject(NoteService);
   private localStorageService = inject(LocalStorageService)
 
-  // models
-  noteCard: INoteCard = {
-    title: null,
-    userProfileId: null,
-    body: '',
-    keywords: [
-      {
-        keywordId: null,
-        userProfileId: null,
-        name: null
-      }
-    ],
-    noteId: null,
-    creationDate: null,
-    lastUpdateDate: null,
-  }
-
   // methods
   select(option: string) {
     if (option === 'note') {

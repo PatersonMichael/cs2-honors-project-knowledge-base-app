@@ -11,6 +11,8 @@ import { NoteDetailsComponent } from './components/note-details/note-details.com
 import { CreateComponent } from './components/create/create.component';
 import { NewNoteComponent } from './components/new-note/new-note.component';
 import { NewExcerptComponent } from './components/new-excerpt/new-excerpt.component';
+import { ExcerptDetailsComponent } from './components/excerpt-details/excerpt-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -70,6 +72,12 @@ export const routes: Routes = [
                         canActivate: [authGuard]
                     },
                 ]
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+                title: 'Knowledge Base - Profile',
+                canActivate: [authGuard]
             }
 
         ],
@@ -78,6 +86,12 @@ export const routes: Routes = [
         path:'note/:id',
         component: NoteDetailsComponent,
         title: 'Knowledge Base - Note Details',
+        canActivate: [authGuard]
+    },
+    {
+        path: 'excerpt/:id',
+        component: ExcerptDetailsComponent,
+        title: 'Knowledge Base - Excerpt Details',
         canActivate: [authGuard]
     }
 ];

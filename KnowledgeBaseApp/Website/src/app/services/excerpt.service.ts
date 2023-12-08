@@ -55,7 +55,9 @@ export class ExcerptService {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify(excerpt),
-    })
+    });
+
+    return response.json();
   }
 
   // PUT

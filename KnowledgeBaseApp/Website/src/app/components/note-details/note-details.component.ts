@@ -5,7 +5,6 @@ import { UserService } from '../../services/user.service';
 import { INoteCard } from '../../models/INotecard';
 import { UserNavComponent } from '../user-nav/user-nav.component';
 import { NoteService } from '../../services/note.service';
-import { NgModel } from '@angular/forms';
 
 
 @Component({
@@ -81,7 +80,7 @@ export class NoteDetailsComponent {
   }
 
   saveChanges() {
-    this.noteCard!.lastUpdateDate = new Date();
+    this.noteCard!.lastUpdatedDate = new Date();
     this.noteService.putNoteCardAsync(<INoteCard>this.noteCard).then(result => {
       console.log(result);
       

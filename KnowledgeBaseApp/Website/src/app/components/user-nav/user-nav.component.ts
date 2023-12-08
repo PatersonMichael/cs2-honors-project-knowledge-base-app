@@ -16,7 +16,7 @@ import { UserService } from '../../services/user.service';
       <li><a routerLink="create"><span id="accent">Create</span></a></li>
       <li><a (click)="navTo('user/notes')">Notes</a></li>
       <li><a (click)="navTo('user/excerpts')">Excerpts</a></li>
-      <li><a routerLink="">Profile</a></li>
+      <li><a (click)="navTo('user/profile')">Profile</a></li>
       <li><a (click)="logout()">Log Out</a></li>
     </ul>
   </nav>

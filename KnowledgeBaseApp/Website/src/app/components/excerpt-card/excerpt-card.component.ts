@@ -12,17 +12,18 @@ import { RouterLink } from '@angular/router';
     <article class="excerpt-card-body">
       <div class="excerpt-card-heading">
         <h2 class="excerpt-card-title">{{excerptCard.title}}</h2>
-        <a [routerLink]="['/note', excerptCard.excerptCardId]">
+        <a [routerLink]="['/excerpt', excerptCard.excerptCardId]">
           <img src="assets/edit-icon-black.png" alt="Edit" class="edit-icon">
       </a>
       </div>
-      <p class="note-text">
+      <p class="excerpt-text">
         {{excerptCard.excerpt!.slice(0, 100)}}
 
         @if(excerptCard.excerpt!.length > 100) {
           <span>. . .</span>
         }
       </p>
+        <p id="excerpt-author">- {{excerptCard.citation?.sourceMaterial?.authorFirstName}} {{excerptCard.citation?.sourceMaterial?.authorLastName}}</p>
     </article>
   </div>
   `,
@@ -31,22 +32,8 @@ import { RouterLink } from '@angular/router';
 export class ExcerptCardComponent {
   @Input() excerptCard!: IExcerptCard;
 
-  // need logic to limit size of note body to 15 words
-
   excerptText: string = '';
 
   constructor() {
-    // this.limitTextBodyLength(this.noteCard.body.split(' '), 15);
-  }
-
-  limitTextBodyLength(textBodyWords: string[], maxLength: number) {
-    if (textBodyWords.length > maxLength) {
-      for (let i = 0; i < textBodyWords.length; i++) {
-        this.excerptText += textBodyWords[i] + " ";
-      }
-    }
-    else {
-      this.excerptText = textBodyWords.join(' ');
-    }
   }
 }

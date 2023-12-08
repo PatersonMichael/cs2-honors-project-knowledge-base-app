@@ -69,7 +69,7 @@ export class NewNoteComponent {
       userProfileId: this.userDetails.userProfileId,
       keywords: this.processKeywords(this.keywordsArr),
       creationDate: new Date(),
-      lastUpdateDate: new Date(),
+      lastUpdatedDate: new Date(),
     }
 
     const response = this.noteService.postNoteCardAsync(noteCard).then(result => {
@@ -77,7 +77,7 @@ export class NewNoteComponent {
         // redirect to created note with associated id
         this.router.navigate([`note/${result['noteId']}`]);
       }
-    })
+    });
   }
 
   // Keywords need to be handled in a special way.

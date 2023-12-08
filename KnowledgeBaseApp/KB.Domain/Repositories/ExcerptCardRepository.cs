@@ -41,6 +41,9 @@ namespace KB.Domain.Repositories
             return await _context.ExcerptCards
                 .Where(x => x.UserProfileId == userProfileId)
                 .AsNoTracking()
+                .Include(x => x.Citation)
+                .Include(x => x.Keywords)
+                .Include(x => x.Citation.sourceMaterial)
                 .ToListAsync();
         }
 

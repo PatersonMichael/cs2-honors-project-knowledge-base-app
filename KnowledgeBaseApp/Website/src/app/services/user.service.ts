@@ -95,6 +95,44 @@ export class UserService {
     // if statuscode is 200, store jwt
   }
 
+  async loginUserProfileNoNavAsync(loginCreds: IUserLoginCredentials) :Promise<number> {
+    try {
+      const response = await fetch (`${this.apiUrl}/api/Authentication`, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(loginCreds),
+      });
+
+      const responseJson = response.json();
+  
+      responseJson.then(result => {
+        if(result['statusCode'] == 200) {
+          // console.log("try storing as key");
+          // this.localStorageService.set("Authorization", `Bearer ${result.value}`)
+          // console.log(this.localStorageService.get("Authorization"));
+          return 200;
+        }
+        else {
+          return 400;
+        }
+      });
+      return 400;
+            
+    } catch (error) {
+      reportError({message: getErrorMessage(error)});
+      return 500;
+    }
+
+    // if statuscode is 200, store jwt
+  }
+
   // takes path to authorzation cookie and deletes it. 
   public logout(path?: string) {
     this.cookieService.remove("Authorization", path);
@@ -107,7 +145,20 @@ export class UserService {
   }
 
   // PUT
-  // putUserProfileAsync()
+  async putUserProfileAsync(userProfile: IUserProfile) {
+    const response = await fetch(`${this.apiUrl}/api/UserProfiles/${userProfile.userProfileId}`, {
+      method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": this.cookieService.get(("Authorization")),
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(userProfile),
+    });
+  }
 
   // DELETE
   // deleteUserProfileAsync()
