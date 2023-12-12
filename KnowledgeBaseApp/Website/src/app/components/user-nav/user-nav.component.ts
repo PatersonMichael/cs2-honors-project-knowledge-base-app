@@ -13,7 +13,7 @@ import { UserService } from '../../services/user.service';
       <header>Knowledge Base</header>
     </a>
     <ul class="nav-links">
-      <li><a routerLink="create"><span id="accent">Create</span></a></li>
+      <li><a (click)="navTo('user/create')"><span id="accent">Create</span></a></li>
       <li><a (click)="navTo('user/notes')">Notes</a></li>
       <li><a (click)="navTo('user/excerpts')">Excerpts</a></li>
       <li><a (click)="navTo('user/profile')">Profile</a></li>
@@ -26,6 +26,8 @@ import { UserService } from '../../services/user.service';
 export class UserNavComponent {
   private userService = inject(UserService);
   private router = inject(Router);
+
+  selectedRoute: boolean = false;
 
   navTo(route: string) {
     this.router.navigate([route])

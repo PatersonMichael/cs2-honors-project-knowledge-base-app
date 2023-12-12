@@ -156,13 +156,13 @@ SELECT * FROM KnowledgeBase.Note;
 -- SELECT * FROM KnowledgeBase.SourceMaterialAuthor;
 -- Test query to see what users added each source material, and each source material's author
 
-SELECT S.Title AS [Source Material], S.SourceMaterialEdition AS [Edition], CONCAT(A.FirstName, ' ', A.LastName) AS [Author], S.SourceMaterialType AS [Type], U.Nametag AS [username]
-FROM KnowledgeBase.SourceMaterial S
-INNER JOIN KnowledgeBase.SourceMaterialAuthor SA ON S.SourceMaterialID = SA.SourceMaterialID
-INNER JOIN KnowledgeBase.Author A ON A.AuthorID = SA.AuthorID
-LEFT OUTER JOIN
-KnowledgeBase.UserProfile U
-ON S.UserProfileID = U.UserProfileID
+-- SELECT S.Title AS [Source Material], S.SourceMaterialEdition AS [Edition], CONCAT(A.FirstName, ' ', A.LastName) AS [Author], S.SourceMaterialType AS [Type], U.Nametag AS [username]
+-- FROM KnowledgeBase.SourceMaterial S
+-- INNER JOIN KnowledgeBase.SourceMaterialAuthor SA ON S.SourceMaterialID = SA.SourceMaterialID
+-- INNER JOIN KnowledgeBase.Author A ON A.AuthorID = SA.AuthorID
+-- LEFT OUTER JOIN
+-- KnowledgeBase.UserProfile U
+-- ON S.UserProfileID = U.UserProfileID
 
 -- Test query: searching for excerpt card based on keyword
 

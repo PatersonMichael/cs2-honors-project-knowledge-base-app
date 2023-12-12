@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { INoteCard } from '../../models/INotecard';
@@ -40,6 +40,7 @@ import { Router } from '@angular/router';
           </ul>
         </article>
         <div id="bottom">
+          <button id="cancel-button" (click)="cancel()">Cancel</button>
           <button id="submit-button" (click)="submitNote()">Save Note</button>
         </div>
     </section>
@@ -59,6 +60,12 @@ export class NewNoteComponent {
     title: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
     body: new FormControl('', Validators.compose([Validators.required]))
   });
+
+  @Output() isCancelling = new EventEmitter<boolean>();
+
+  cancel() {
+    this.isCancelling.emit(true);
+  }
 
  
   submitNote() {

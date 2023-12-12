@@ -39,7 +39,7 @@ CREATE TABLE KnowledgeBase.SourceMaterial (
     SourceMaterialType VARCHAR(50) NOT NULL,
     SourceMaterialEdition VARCHAR(30) NULL,
     AuthorFirstName VARCHAR(200) NOT NULL,
-    AuthorLastName VARCHAR(200) NOT NULL,
+    AuthorLastName VARCHAR(200) NULL,
     UserProfileID INT NOT NULL,
     CONSTRAINT PK_SourceMaterial_SourceMaterialID PRIMARY KEY CLUSTERED (SourceMaterialID ASC),
     CONSTRAINT AK_SourceMaterial_Title_SourceMaterialEdition UNIQUE NONCLUSTERED (Title, SourceMaterialEdition),
@@ -89,7 +89,7 @@ GO
 CREATE TABLE KnowledgeBase.Citation (
     CitationID INT IDENTITY (1,1) NOT NULL,
     Format VARCHAR(50) NOT NULL,
-    ExcerptLocation VARCHAR(40),
+    ExcerptLocation VARCHAR(40) NULL,
     CreationDate DATE NOT NULL,
     UserProfileID INT NOT NULL,
     SourceMaterialID INT NULL,

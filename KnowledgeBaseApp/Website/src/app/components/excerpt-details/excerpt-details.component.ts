@@ -32,30 +32,34 @@ import { IUserProfile } from '../../models/IUserProfile';
         @if (editMode && excerptCard?.citation?.userProfileId == userDetails?.userProfileId) {
           <div id="citation-container">
             <article id="citation-form-left">
+              <label for="source-title">Source Material Title <span class="required">*</span></label>
               <p class="long-input" id="source-title" [contentEditable]="editMode" 
               (input)="$any(excerptCard).citation.sourceMaterial.title = $any($event).target.innerHTML">
               {{excerptCard?.citation?.sourceMaterial?.title}}
               </p>
+              <label for="source-edition">Source Material Edition</label>
               <p class="long-input" id="source-edition" [contentEditable]="editMode" 
                 (input)="$any(excerptCard).citation.sourceMaterial.sourceMaterialEdition = $any($event).target.innerHTML">
                 {{excerptCard?.citation?.sourceMaterial?.sourceMaterialEdition}}
               </p>
+              <label for="author-first-name">Author First Name <span class="required">*</span></label>
                 <p class="long-input" id="author-first-name" [contentEditable]="editMode" 
                   (input)="$any(excerptCard).citation.sourceMaterial.authorFirstName = $any($event).target.innerHTML">
                   {{excerptCard?.citation?.sourceMaterial?.authorFirstName}}
                 </p>
+                <label for="author-last-name">Author Last Name</label>
                 <p class="long-input" id="author-last-name" [contentEditable]="editMode" 
                   (input)="$any(excerptCard).citation.sourceMaterial.authorLastName = $any($event).target.innerHTML">
                   {{excerptCard?.citation?.sourceMaterial?.authorLastName}}
               </p>
-              <div class="short-inputs">
-                </div>
               </article>
               <article id="citation-form-right">
+                <label for="excerpt-location">Quote Location (ex: Page Number) </label>
               <p class="long-input" id="excerpt-location" [contentEditable]="editMode" 
                 (input)="$any(excerptCard).citation.excerptLocation = $any($event).target.innerHTML">
                 {{excerptCard?.citation?.excerptLocation}}
               </p>
+              <label for="publisher">Publisher</label>
               <p class="long-input" id="publisher" [contentEditable]="editMode" 
                 (input)="$any(excerptCard).citation.sourceMaterial.publisher = $any($event).target.innerHTML">
                 {{excerptCard?.citation?.sourceMaterial?.publisher}}
@@ -204,6 +208,7 @@ export class ExcerptDetailsComponent {
     this.excerptCard!.lastUpdatedDate = new Date();
     this.excerptService.putExcerptAsync(<IExcerptCard>this.excerptCard).then(result => {
       console.log(result);
+    this.editMode = false;
       
     })
 

@@ -84,6 +84,7 @@ export class NoteDetailsComponent {
     this.noteService.putNoteCardAsync(<INoteCard>this.noteCard).then(result => {
       console.log(result);
       
+     this.editMode = false; 
     })
   }
 

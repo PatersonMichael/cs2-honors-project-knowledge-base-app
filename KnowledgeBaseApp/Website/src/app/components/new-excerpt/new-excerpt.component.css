@@ -1,7 +1,7 @@
 #excerpt {
     background-color: var(--primary-color);
     width: 44.4rem;
-    height: 48.4rem;
+    height: 55rem;
     border-radius: 6px;
     margin: auto;
     color: #EEE;
@@ -46,7 +46,7 @@ header input {
     padding-left: 1rem;
     padding-top: 1rem;
     width: 41.7rem;
-    height: 17.75rem;
+    height: 20.75rem;
     background-color: #454545;
     border-radius: 6px;
 }
@@ -63,10 +63,12 @@ header input {
 
 #citation-form-left {
     margin-left: 2rem;
+    margin-right: 1rem;
 }
 
-#citation-form-left {
-    margin-right: 1rem;
+#citation-form-right {
+    display: flex;
+    flex-direction: column;
 }
 
 #publish-date {
@@ -80,7 +82,7 @@ header input {
     padding-left: 0.3rem;
     border-radius: 6px;
     border: none;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .short-input {
@@ -95,10 +97,10 @@ header input {
 }
 
 #citation-form-area select {
-    width: 8.5rem;
+    width: 17.7rem;
     height: 1.5rem;
     border-radius: 6px;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-right: 1rem;
     border: none;
 }
@@ -124,4 +126,23 @@ header input {
     background-color: var(--accent-color);
     color: #EEE;
     cursor: pointer;
+}
+
+#cancel-button {
+    width: 8.4rem;
+    height: 2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(127, 0, 0);
+    color: #EEE;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+label {
+    font-size: 14px;
+}
+
+.required {
+    color: red;;
 }

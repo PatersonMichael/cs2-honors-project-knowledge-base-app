@@ -47,8 +47,9 @@ a{
 li a:hover {
     text-decoration: underline;
     font-size: 1.5rem;
-}
-
-#accent {
     color: var(--accent-color);
 }
+
+/* #accent {
+    color: var(--accent-color);
+} */

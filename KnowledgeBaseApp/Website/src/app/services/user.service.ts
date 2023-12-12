@@ -95,8 +95,8 @@ export class UserService {
     // if statuscode is 200, store jwt
   }
 
-  async loginUserProfileNoNavAsync(loginCreds: IUserLoginCredentials) :Promise<number> {
-    try {
+  async loginUserProfileNoNavAsync(loginCreds: IUserLoginCredentials) :Promise<number>{
+      let output = 0;
       const response = await fetch (`${this.apiUrl}/api/Authentication`, {
         method: "POST",
         mode: "cors",
@@ -110,27 +110,24 @@ export class UserService {
         body: JSON.stringify(loginCreds),
       });
 
-      const responseJson = response.json();
-  
-      responseJson.then(result => {
-        if(result['statusCode'] == 200) {
-          // console.log("try storing as key");
-          // this.localStorageService.set("Authorization", `Bearer ${result.value}`)
-          // console.log(this.localStorageService.get("Authorization"));
-          return 200;
+      
+      
+      await response.json().then(result => {
+        // console.log(result.statusCode);
+        
+        if (result.statusCode == 200) {
+          output = 200;
+        }
+        else if (result.statusCode == 400) {
+          output = 400;
         }
         else {
-          return 400;
+          output = 500;
         }
       });
-      return 400;
-            
-    } catch (error) {
-      reportError({message: getErrorMessage(error)});
-      return 500;
-    }
-
-    // if statuscode is 200, store jwt
+      
+      // console.log(response.json());
+      return output;
   }
 
   // takes path to authorzation cookie and deletes it. 
@@ -158,6 +155,10 @@ export class UserService {
       referrerPolicy: "no-referrer",
       body: JSON.stringify(userProfile),
     });
+
+    let responseJson = response.json();
+
+    return responseJson;
   }
 
   // DELETE

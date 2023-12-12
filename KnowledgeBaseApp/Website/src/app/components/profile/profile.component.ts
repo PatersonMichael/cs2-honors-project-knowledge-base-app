@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { UserService } from '../../services/user.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { IUserLoginCredentials, IUserProfile } from '../../models/IUserProfile';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import { IUserLoginCredentials, IUserProfile } from '../../models/IUserProfile';
   template: `
     <section id="change-password">
       @if (success) {
-        <p id="success">Success!</p>
+        <p id="success">Success! Logging you out.</p>
       }
       @else if (invalidCred) {
         <p class="invalid-credentials">Invalid Credentials</p>
@@ -27,7 +28,7 @@ import { IUserLoginCredentials, IUserProfile } from '../../models/IUserProfile';
         <input type="password" id="old-password" formControlName="oldPassword">
         <label for="password">New Password</label>
         <input type="password" id="password" formControlName="password">
-        <button id="submit-button" (click)="submitNewPass()">Submit</button>
+        <button id="submit-button" (click)="submitNewPass()" [disabled]="success">Submit</button>
       </form>
       }
     </section>
@@ -37,6 +38,7 @@ import { IUserLoginCredentials, IUserProfile } from '../../models/IUserProfile';
 export class ProfileComponent {
 private userService = inject(UserService);
 private localStorageService = inject(LocalStorageService);
+private router = inject(Router);
 
 private userDetails: IUserProfile = JSON.parse(<string>this.localStorageService.get("userDetails"));
 private passRegex: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{9,256}$/;
@@ -66,11 +68,28 @@ submitNewPass() {
       email: this.userDetails.email,
       password: this.passwordForm.value.oldPassword
     }
-
-    this.userProfile.password = this.passwordForm.value.password;
+    // console.log(userLoginCreds);
+    // console.log(this.userDetails);
+    
+    
     this.userService.loginUserProfileNoNavAsync(userLoginCreds).then(result => {
+      // console.log(result);
+      
       if (result == 200) {
-        this.userService.putUserProfileAsync(this.userProfile);
+        // console.log("trying to update User");
+        this.userProfile['password'] = this.passwordForm.value.password;
+        this.userService.putUserProfileAsync(this.userProfile).then(result => {
+          if (result.userProfileId > 0) {
+            this.invalidCred = false;
+            this.success = true;
+            this.passwordForm.disable();
+            setTimeout(() => {
+              this.userService.logout();
+              this.router.navigate(['/']);
+              
+            }, 3000);
+          }
+        })
       }
       else {
         this.invalidCred = true;

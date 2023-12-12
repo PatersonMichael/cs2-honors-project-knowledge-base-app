@@ -23,10 +23,10 @@ import { OPTION } from '../../enums/option';
         </div>
       }
       @if (creatingNote) {
-        <app-new-note></app-new-note>
+        <app-new-note (isCancelling)="cancel()"></app-new-note>
       } 
       @else if (creatingExcerpt) {
-        <app-new-excerpt></app-new-excerpt>
+        <app-new-excerpt (isCancelling)="cancel()"></app-new-excerpt>
       }
     </section>
   `,
@@ -53,6 +53,12 @@ export class CreateComponent {
       this.choiceMade = true;
       this.creatingExcerpt = true;
     }
+  }
+
+  cancel() {
+    this.choiceMade = false;
+    this.creatingNote = false;
+    this.creatingExcerpt = false;
   }
 
   

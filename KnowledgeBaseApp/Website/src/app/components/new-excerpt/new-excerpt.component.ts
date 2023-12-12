@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IExcerptCard } from '../../models/IExcerptCard';
@@ -26,24 +26,32 @@ import { Router } from '@angular/router';
           <h2>Citation</h2>
           <div id="citation-container">
             <article id="citation-form-left">
+              <label for="source-title">Source Material Title <span class="required">*</span></label>
               <input type="text" class="long-input" id="source-title" placeholder="Source Title" formControlName="sourceTitle">
+              <label for="source-edition">Source Material Edition</label>
               <input type="text" id="source-edition" placeholder="Source Edition" class="long-input" formControlName="sourceEdition">
               <div class="short-inputs">
+                <label for="author-first-name">Author First Name <span class="required">*</span></label>
                 <input type="text" class="long-input" placeholder="Author First Name" id="author-first-name" formControlName="authorFirstName">
+                <label for="author-last-name">Author Last Name</label>
                 <input type="text" class="long-input" placeholder="Author Last Name" id="author-last-name" formControlName="authorLastName">
+                <label for="quote-location-excerpt">Quote Location (ex: Page Number)</label>
+                <input type="text" class="long-input" id="quote-location-input" placeholder="Quote Location (page #, paragraph, etc.)" formControlName="excerptLocation">
               </div>
               <div class="short-inputs">
                 </div>
               </article>
               <article id="citation-form-right">
-                <input type="text" class="long-input" id="quote-location-input" placeholder="Quote Location (page #, paragraph, etc.)" formControlName="excerptLocation">
+                <label for="publisher">Publisher</label>
               <input type="text" class="long-input" placeholder="Publisher" id="publisher-input" formControlName="publisher">
-              <label for="publish-date">Publish Date</label>
-              <input type="date" id="publish-date" placeholder="Publish Date" class="short-input" formControlName="publishDate">
+              <label for="publish-date">Publish Date <span class="required">*</span></label>
+              <input type="date" id="publish-date" placeholder="Publish Date" class="long-input" formControlName="publishDate">
+              <label for="source-type">Source Type <span class="required">*</span></label>
               <select name="source-type" id="source-type" formControlName="sourceType">
                 <option value="">Source Type</option>
                 <option *ngFor="let sourceType of sourceTypes" [ngValue]="sourceType">{{sourceType}}</option>
               </select>
+              <label for="citation-format">Citation Format <span class="required">*</span></label>
               <select name="citation-format" id="citation-format" formControlName="format">
                <option value="">Citation Format</option>
                <option *ngFor="let format of formats" [ngValue]="format">{{format}}</option>
@@ -51,6 +59,7 @@ import { Router } from '@angular/router';
             </article>
           </div>
           <div id="button-container">
+            <button id="cancel-button" (click)="cancel()">Cancel</button>
             <button id="submit-button" (click)="submitExcerpt()">Save Excerpt</button>
           </div>
         </section>
@@ -86,6 +95,12 @@ export class NewExcerptComponent {
   // select control values
   formats: string[] = ['MLA', 'APA', 'Chicago'];
   sourceTypes: string[] = ['Book', 'Article', 'Journal', 'Other'];
+
+  @Output() isCancelling = new EventEmitter<boolean>();
+
+  cancel() {
+    this.isCancelling.emit(true);
+  }
 
   submitExcerpt() {
     let excerptCard: IExcerptCard = {

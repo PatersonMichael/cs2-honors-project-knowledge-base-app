@@ -63,6 +63,19 @@ header input {
     cursor: pointer;
 }
 
+#cancel-button {
+    width: 8.43rem;
+    height: 2rem;
+    background-color: rgb(127, 0, 0);
+    color: #EEE;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
 #bottom {
     display: flex;
     justify-content: end;
