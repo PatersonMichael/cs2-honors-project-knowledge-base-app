@@ -17,11 +17,11 @@ Contains libraries, utilities, and exceptions used between multiple layers in th
 
 Main service layer of the application. Performs Object-Relational-Mapping (ORM) between the service layer and database using Microsoft Entity Framework. 
 
-### KB.API
+### KB.Web.API
 
 Provides an interface between the service layer and the outside world, particularly the user interface layer of the application.
 
-### KB.Web
+### Website
 
 The user interface for the application. Uses Angular 17 framework for its structure and logic. Requires Authentication and Authorization for users to access the application beyond the landing page.
 
