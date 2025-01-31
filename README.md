@@ -6,6 +6,26 @@ Features a tiered web application architecture, using Microsoft SQL Server Expre
 Authorization and Authentication are performed by maintaining user login info, checking for matching user login credentials with that info and providing JSON Web Tokens as a key for authorized users to access their data.
 
 
+## Application Modules:
+
+
+### KB.Common
+
+Contains libraries, utilities, and exceptions used between multiple layers in the backend.
+
+### KB.Domain
+
+Main service layer of the application. Performs Object-Relational-Mapping (ORM) between the service layer and database using Microsoft Entity Framework. 
+
+### KB.API
+
+Provides an interface between the service layer and the outside world, particularly the user interface layer of the application.
+
+### KB.Web
+
+The user interface for the application. Uses Angular 17 framework for its structure and logic. Requires Authentication and Authorization for users to access the application beyond the landing page.
+
+
 ## Future Features and Ideas
 
 
