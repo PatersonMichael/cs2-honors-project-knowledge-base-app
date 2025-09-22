@@ -1,7 +1,7 @@
 # cs2-honors-project-knowledge-base-app
 Web application that stores user notes and exerpts from source material for future reference and citation generation.
 
-![Homepage Screenshot](<img width="1501" height="987" alt="image" src="https://github.com/user-attachments/assets/a30f26d4-c096-4f42-902e-f2b19cfc77d9" />
+![Homepage Screenshot](https://github.com/PatersonMichael/cs2-honors-project-knowledge-base-app/blob/main/Screenshot%202025-09-22%20132848.png
  "Homepage Screenshot")
 
 Features a tiered web application architecture, using Microsoft SQL Server Express as a database, .NET 6 as a domain and backend API layer, and Angular 17 for the user interface. The database was designed in a normalized format, converting the "business rules and entities" into their respective tables and relations. Furthermore the service layer (backend) performed the majority of the  business logic for this simple application.
