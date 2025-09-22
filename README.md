@@ -1,5 +1,5 @@
 # cs2-honors-project-knowledge-base-app
-Web application that stores user notes and exerpts from source material for future reference and citation generation.
+## Web application that stores user notes and exerpts from source material for future reference and citation generation.
 
 ![Homepage Screenshot](https://github.com/PatersonMichael/cs2-honors-project-knowledge-base-app/blob/main/Screenshot%202025-09-22%20132848.png
  "Homepage Screenshot")
